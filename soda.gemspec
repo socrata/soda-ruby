@@ -1,12 +1,22 @@
+require File.expand_path("../lib/soda/version", __FILE__)
+
 Gem::Specification.new do |s|
   s.name        = 'soda-ruby'
-  s.version     = '0.2.0'
-  s.date        = '2012-11-05'
-  s.summary     = "Ruby for SODA 2.0"
-  s.description = "A simple wrapper for SODA 2.0"
+  s.version     = SODA::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.authors     = ["Chris Metcalf"]
   s.email       = 'chris.metcalf@socrata.com'
-  s.files       = ["lib/soda.rb"]
   s.homepage    =
     'http://github.com/socrata/soda-ruby'
+  s.summary     = "Ruby for SODA 2.0"
+  s.description = "A simple wrapper for SODA 2.0"
+
+  s.required_rubygems_version = ">= 1.3.6"
+
+  # lol - required for validation
+  s.rubyforge_project         = "soda-ruby"
+
+  # If you need to check in files that aren't .rb files, add them here
+  s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.mkd"]
+  s.require_path = 'lib'
 end

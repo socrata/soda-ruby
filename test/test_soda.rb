@@ -1,13 +1,13 @@
 require 'test/unit'
 require 'shoulda'
-require 'soda'
+require 'soda/client'
 
 # NOTE: These tests are by no means exhaustive, they're just a start
 
 class SODATest < Test::Unit::TestCase
   context "earthquakes" do
     setup do
-      @client = SODA.new({:domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
+      @client = SODA::Client.new({:domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
     end
 
     should "be able to access the earthquakes dataset" do
@@ -45,7 +45,7 @@ class SODATest < Test::Unit::TestCase
 
   context "authenticated" do 
     setup do
-      @client = SODA.new({
+      @client = SODA::Client.new({
         :domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw", 
         :username => "sandbox-user@socrata.com", :password => "V3mANe{7JMsc(G6P"})
     end
@@ -67,7 +67,7 @@ class SODATest < Test::Unit::TestCase
 
   context "errors" do
     setup do
-      @client = SODA.new({:domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
+      @client = SODA::Client.new({:domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
     end
 
     should "get an error accessing a nonexistent dataset" do
@@ -79,7 +79,7 @@ class SODATest < Test::Unit::TestCase
 
   context "a non-existent domain" do
     setup do
-      @client = SODA.new({:domain => "fakedomain.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
+      @client = SODA::Client.new({:domain => "fakedomain.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
     end
 
     should "be able to access the earthquakes dataset" do
