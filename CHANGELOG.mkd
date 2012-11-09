@@ -1,1 +1,2 @@
 0.2.0 - Initial Public Release
+0.2.1 - Point release to update gemspec dependencies
