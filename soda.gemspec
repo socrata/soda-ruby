@@ -19,4 +19,7 @@ Gem::Specification.new do |s|
   # If you need to check in files that aren't .rb files, add them here
   s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.mkd"]
   s.require_path = 'lib'
+
+  # we depend on:
+  s.add_dependency 'hashie'
 end
