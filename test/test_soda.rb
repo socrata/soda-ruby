@@ -43,10 +43,10 @@ class SODATest < Test::Unit::TestCase
     end
   end
 
-  context "authenticated" do 
+  context "authenticated" do
     setup do
       @client = SODA::Client.new({
-        :domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw", 
+        :domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw",
         :username => "sandbox-user@socrata.com", :password => "V3mANe{7JMsc(G6P"})
     end
 
