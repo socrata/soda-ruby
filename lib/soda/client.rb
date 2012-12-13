@@ -14,8 +14,7 @@ module SODA
     end
 
     def get(resource, params = {})
-      # Create query string of escaped key, value pairs
-      query = params.collect{ |key, val| "#{key}=#{CGI::escape(val.to_s)}" }.join("&")
+      query = query_string(params)
 
       # If we didn't get a full path, assume "/resource/"
       if !resource.start_with?("/")
@@ -53,8 +52,7 @@ module SODA
     end
 
     def post(resource, body = "", params = {})
-      # Create query string of escaped key, value pairs
-      query = params.collect{ |key, val| "#{key}=#{CGI::escape(val)}" }.join("&")
+      query = query_string(params)
 
       # If we didn't get a full path, assume "/resource/"
       if !resource.start_with?("/")
@@ -94,8 +92,7 @@ module SODA
     end
 
     def put(resource, body = "", params = {})
-      # Create query string of escaped key, value pairs
-      query = params.collect{ |key, val| "#{key}=#{CGI::escape(val)}" }.join("&")
+      query = query_string(params)
 
       # If we didn't get a full path, assume "/resource/"
       if !resource.start_with?("/")
@@ -133,5 +130,11 @@ module SODA
         end
       end
     end
+
+    private
+      def query_string(params) 
+        # Create query string of escaped key, value pairs
+        return params.collect{ |key, val| "#{key}=#{CGI::escape(val.to_s)}" }.join("&")
+      end
   end
 end
