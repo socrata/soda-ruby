@@ -89,4 +89,19 @@ class SODATest < Test::Unit::TestCase
     end
   end
 
+  context "raw" do
+    setup do
+      @client = SODA::Client.new({:domain => "sandbox.demo.socrata.com", :app_token => "K6rLY8NBK0Hgm8QQybFmwIUQw" })
+    end
+
+    should "be able to retrieve CSV if I so choose" do
+      response = @client.get("earthquakes.csv")
+      assert response.is_a? String
+    end
+
+    should "be able to retrieve CSV with a full path" do
+      response = @client.get("/resource/earthquakes.csv")
+      assert response.is_a? String
+    end
+  end
 end

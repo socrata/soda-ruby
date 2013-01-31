@@ -21,8 +21,15 @@ module SODA
         resource = "/resource/" + resource
       end
 
+      # Check to see if we were given an output type
+      extension = ".json"
+      if matches = resource.match(/^(.+)(\.\w+)$/)
+        resource = matches.captures[0]
+        extension = matches.captures[1]
+      end
+
       # Create our request
-      uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
+      uri = URI.parse("https://#{@config[:domain]}#{resource}#{extension}?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
@@ -41,12 +48,17 @@ module SODA
       if response.code != "200"
         raise "Error querying \"#{uri.to_s}\": #{response.body}"
       else
-        # Return a bunch of mashes
-        response = JSON::parse(response.body)
-        if response.is_a? Array
-          return response.collect { |r| Hashie::Mash.new(r) }
+        if extension == ".json"
+          # Return a bunch of mashes if we're JSON
+          response = JSON::parse(response.body)
+          if response.is_a? Array
+            return response.collect { |r| Hashie::Mash.new(r) }
+          else
+            return Hashie::Mash.new(response)
+          end
         else
-          return Hashie::Mash.new(response)
+          # We don't partically care, just return the raw body
+          return response.body
         end
       end
     end
