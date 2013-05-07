@@ -32,6 +32,9 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{resource}#{extension}?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      if @config[:ignore_ssl]
+        http.auth.ssl.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
 
       request = Net::HTTP::Get.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
@@ -75,6 +78,9 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      if @config[:ignore_ssl]
+        http.auth.ssl.verify_mode = openssl::ssl::verify_none
+      end
 
       request = Net::HTTP::Post.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
@@ -105,6 +111,9 @@ module SODA
 
     def put(resource, body = "", params = {})
       query = query_string(params)
+      if @config[:ignore_ssl]
+        http.auth.ssl.verify_mode = openssl::ssl::verify_none
+      end
 
       # If we didn't get a full path, assume "/resource/"
       if !resource.start_with?("/")
@@ -115,6 +124,9 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      if @config[:ignore_ssl]
+        http.auth.ssl.verify_mode = openssl::ssl::verify_none
+      end
 
       request = Net::HTTP::Put.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
