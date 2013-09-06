@@ -143,6 +143,41 @@ module SODA
       end
     end
 
+    def delete(resource, body = "", params = {})
+      query = query_string(params)
+
+      # If we didn't get a full path, assume "/resource/"
+      if !resource.start_with?("/")
+        resource = "/resource/" + resource
+      end
+
+      # Create our request
+      uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Delete.new(uri.request_uri)
+      request.add_field("X-App-Token", @config[:app_token])
+      request.content_type = "application/json"
+      request.body = body.to_json
+
+      # Authenticate if we're supposed to
+      if @config[:username]
+        request.basic_auth @config[:username], @config[:password]
+      end
+
+      # BAM!
+      response = http.request(request)
+
+      # Check our response code
+      if response.code != "200"
+        raise "Error querying \"#{uri.to_s}\": #{response.body}"
+      else
+        # Return a bunch of mashes
+        return response
+      end
+    end
+
     private
       def query_string(params) 
         # Create query string of escaped key, value pairs
