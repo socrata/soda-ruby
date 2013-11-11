@@ -9,7 +9,6 @@ Include the gem and hashie in your Gemfile:
 
 ```ruby
 gem 'soda-ruby', :require => 'soda'
-gem 'hashie'
 ```
 
 Quick Start
