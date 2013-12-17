@@ -1,0 +1,761 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 15 Feb 2013 01:40:16 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-SODA2-Fields: ["region",":updated_at","geolocation","source","magnitude","number_of_stations",":id",":created_at","earthquake_id","depth","occurred_at","version"]
+X-SODA2-Types: ["text","meta_data","location","text","number","number","meta_data","meta_data","text","number","calendar_date","text"]
+X-SODA2-Legacy-Types: true
+
+[ {
+  "region" : "Nevada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-117.6135",
+    "latitude" : "41.1085"
+  },
+  "source" : "nn",
+  "magnitude" : "2.7",
+  "number_of_stations" : "15",
+  "earthquake_id" : "00388610",
+  "depth" : "7.60",
+  "occurred_at" : "2012-09-14T22:38:01",
+  "version" : "9"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-118.1527",
+    "latitude" : "34.525"
+  },
+  "source" : "ci",
+  "magnitude" : "1.5",
+  "number_of_stations" : "35",
+  "earthquake_id" : "15215753",
+  "depth" : "10.60",
+  "occurred_at" : "2012-09-14T22:14:45",
+  "version" : "0"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.7685",
+    "latitude" : "38.8023"
+  },
+  "source" : "nc",
+  "magnitude" : "1.4",
+  "number_of_stations" : "21",
+  "earthquake_id" : "71842370",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-14T22:14:21",
+  "version" : "0"
+}
+, {
+  "region" : "Central California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-117.6778",
+    "latitude" : "36.9447"
+  },
+  "source" : "nn",
+  "magnitude" : "1.5",
+  "number_of_stations" : "29",
+  "earthquake_id" : "00388609",
+  "depth" : "8.20",
+  "occurred_at" : "2012-09-14T22:10:19",
+  "version" : "9"
+}
+, {
+  "region" : "Central California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-117.6903",
+    "latitude" : "36.9417"
+  },
+  "source" : "nn",
+  "magnitude" : "1.7",
+  "number_of_stations" : "29",
+  "earthquake_id" : "00388607",
+  "depth" : "6.40",
+  "occurred_at" : "2012-09-14T22:06:11",
+  "version" : "9"
+}
+, {
+  "region" : "north of the Virgin Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-64.0849",
+    "latitude" : "19.7859"
+  },
+  "source" : "pr",
+  "magnitude" : "3.1",
+  "number_of_stations" : "6",
+  "earthquake_id" : "12258012",
+  "depth" : "20.00",
+  "occurred_at" : "2012-09-14T21:28:55",
+  "version" : "0"
+}
+, {
+  "region" : "Island of Hawaii, Hawaii",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-155.137",
+    "latitude" : "19.3373"
+  },
+  "source" : "hv",
+  "magnitude" : "1.8",
+  "number_of_stations" : "17",
+  "earthquake_id" : "60397836",
+  "depth" : "6.00",
+  "occurred_at" : "2012-09-14T21:23:32",
+  "version" : "2"
+}
+, {
+  "region" : "Island of Hawaii, Hawaii",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-155.5577",
+    "latitude" : "19.846"
+  },
+  "source" : "hv",
+  "magnitude" : "2.3",
+  "number_of_stations" : "36",
+  "earthquake_id" : "60397821",
+  "depth" : "30.80",
+  "occurred_at" : "2012-09-14T20:30:14",
+  "version" : "1"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.773",
+    "latitude" : "38.8375"
+  },
+  "source" : "nc",
+  "magnitude" : "1.6",
+  "number_of_stations" : "29",
+  "earthquake_id" : "71842325",
+  "depth" : "2.10",
+  "occurred_at" : "2012-09-14T20:17:42",
+  "version" : "1"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-124.1643",
+    "latitude" : "40.4365"
+  },
+  "source" : "nc",
+  "magnitude" : "2.3",
+  "number_of_stations" : "13",
+  "earthquake_id" : "71842320",
+  "depth" : "27.80",
+  "occurred_at" : "2012-09-14T20:11:42",
+  "version" : "1"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-141.911",
+    "latitude" : "60.2482"
+  },
+  "source" : "ak",
+  "magnitude" : "2.4",
+  "number_of_stations" : "30",
+  "earthquake_id" : "10559746",
+  "depth" : "3.20",
+  "occurred_at" : "2012-09-14T20:05:26",
+  "version" : "1"
+}
+, {
+  "region" : "Virgin Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-64.1723",
+    "latitude" : "19.5907"
+  },
+  "source" : "pr",
+  "magnitude" : "3.3",
+  "number_of_stations" : "4",
+  "earthquake_id" : "12258011",
+  "depth" : "74.00",
+  "occurred_at" : "2012-09-14T19:58:39",
+  "version" : "0"
+}
+, {
+  "region" : "Central California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-118.845",
+    "latitude" : "37.47"
+  },
+  "source" : "nc",
+  "magnitude" : "1.0",
+  "number_of_stations" : "17",
+  "earthquake_id" : "71842310",
+  "depth" : "8.50",
+  "occurred_at" : "2012-09-14T19:58:30",
+  "version" : "0"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.3142",
+    "latitude" : "40.7522"
+  },
+  "source" : "nc",
+  "magnitude" : "1.9",
+  "number_of_stations" : "10",
+  "earthquake_id" : "71842300",
+  "depth" : "2.60",
+  "occurred_at" : "2012-09-14T19:30:34",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.3497",
+    "latitude" : "33.3927"
+  },
+  "source" : "ci",
+  "magnitude" : "1.3",
+  "number_of_stations" : "39",
+  "earthquake_id" : "15215689",
+  "depth" : "3.40",
+  "occurred_at" : "2012-09-14T19:28:15",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.3673",
+    "latitude" : "33.3842"
+  },
+  "source" : "ci",
+  "magnitude" : "2.3",
+  "number_of_stations" : "108",
+  "earthquake_id" : "15215681",
+  "depth" : "6.90",
+  "occurred_at" : "2012-09-14T18:59:19",
+  "version" : "0"
+}
+, {
+  "region" : "Long Valley area, California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-118.9262",
+    "latitude" : "37.637"
+  },
+  "source" : "nc",
+  "magnitude" : "1.4",
+  "number_of_stations" : "19",
+  "earthquake_id" : "71842280",
+  "depth" : "8.60",
+  "occurred_at" : "2012-09-14T18:51:59",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.3477",
+    "latitude" : "33.9588"
+  },
+  "source" : "ci",
+  "magnitude" : "1.6",
+  "number_of_stations" : "13",
+  "earthquake_id" : "15215665",
+  "depth" : "10.30",
+  "occurred_at" : "2012-09-14T18:44:50",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.078",
+    "latitude" : "33.2142"
+  },
+  "source" : "ci",
+  "magnitude" : "1.5",
+  "number_of_stations" : "53",
+  "earthquake_id" : "15215657",
+  "depth" : "4.40",
+  "occurred_at" : "2012-09-14T18:40:26",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-115.5933",
+    "latitude" : "33.3067"
+  },
+  "source" : "ci",
+  "magnitude" : "1.6",
+  "number_of_stations" : "14",
+  "earthquake_id" : "15215649",
+  "depth" : "3.40",
+  "occurred_at" : "2012-09-14T18:35:15",
+  "version" : "0"
+}
+, {
+  "region" : "Virgin Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-64.3468",
+    "latitude" : "19.4752"
+  },
+  "source" : "pr",
+  "magnitude" : "3.1",
+  "number_of_stations" : "6",
+  "earthquake_id" : "12258010",
+  "depth" : "70.00",
+  "occurred_at" : "2012-09-14T18:32:36",
+  "version" : "0"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-124.1582",
+    "latitude" : "40.4338"
+  },
+  "source" : "nc",
+  "magnitude" : "2.5",
+  "number_of_stations" : "16",
+  "earthquake_id" : "71842265",
+  "depth" : "26.00",
+  "occurred_at" : "2012-09-14T18:25:38",
+  "version" : "1"
+}
+, {
+  "region" : "Baja California, Mexico",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-115.7207",
+    "latitude" : "32.5922"
+  },
+  "source" : "ci",
+  "magnitude" : "2.1",
+  "number_of_stations" : "26",
+  "earthquake_id" : "15215641",
+  "depth" : "2.10",
+  "occurred_at" : "2012-09-14T18:25:20",
+  "version" : "0"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-124.1653",
+    "latitude" : "40.4405"
+  },
+  "source" : "nc",
+  "magnitude" : "3.3",
+  "number_of_stations" : "15",
+  "earthquake_id" : "71842260",
+  "depth" : "25.80",
+  "occurred_at" : "2012-09-14T18:21:59",
+  "version" : "3"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-124.1538",
+    "latitude" : "40.434"
+  },
+  "source" : "nc",
+  "magnitude" : "4.0",
+  "number_of_stations" : "17",
+  "earthquake_id" : "71842255",
+  "depth" : "24.30",
+  "occurred_at" : "2012-09-14T18:19:51",
+  "version" : "6"
+}
+, {
+  "region" : "northern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-143.2678",
+    "latitude" : "65.6419"
+  },
+  "source" : "ak",
+  "magnitude" : "3.6",
+  "number_of_stations" : "47",
+  "earthquake_id" : "10559548",
+  "depth" : "7.80",
+  "occurred_at" : "2012-09-14T17:50:15",
+  "version" : "2"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.7442",
+    "latitude" : "38.79"
+  },
+  "source" : "nc",
+  "magnitude" : "1.1",
+  "number_of_stations" : "19",
+  "earthquake_id" : "71842235",
+  "depth" : "1.50",
+  "occurred_at" : "2012-09-14T17:49:51",
+  "version" : "0"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-150.3703",
+    "latitude" : "61.9401"
+  },
+  "source" : "ak",
+  "magnitude" : "1.2",
+  "number_of_stations" : "13",
+  "earthquake_id" : "10559546",
+  "depth" : "47.00",
+  "occurred_at" : "2012-09-14T17:45:21",
+  "version" : "2"
+}
+, {
+  "region" : "Arizona",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-112.092",
+    "latitude" : "36.9687"
+  },
+  "source" : "uu",
+  "magnitude" : "1.6",
+  "number_of_stations" : "8",
+  "earthquake_id" : "09141731",
+  "depth" : "7.10",
+  "occurred_at" : "2012-09-14T17:31:57",
+  "version" : "2"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-153.1658",
+    "latitude" : "59.4923"
+  },
+  "source" : "ak",
+  "magnitude" : "2.3",
+  "number_of_stations" : "40",
+  "earthquake_id" : "10559335",
+  "depth" : "97.80",
+  "occurred_at" : "2012-09-14T16:57:23",
+  "version" : "2"
+}
+, {
+  "region" : "Virgin Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-64.2926",
+    "latitude" : "19.6098"
+  },
+  "source" : "pr",
+  "magnitude" : "3.2",
+  "number_of_stations" : "3",
+  "earthquake_id" : "12258009",
+  "depth" : "7.00",
+  "occurred_at" : "2012-09-14T16:33:08",
+  "version" : "0"
+}
+, {
+  "region" : "south of the Fiji Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-179.1089",
+    "latitude" : "-23.5123"
+  },
+  "source" : "us",
+  "magnitude" : "4.6",
+  "number_of_stations" : "93",
+  "earthquake_id" : "c000cp1z",
+  "depth" : "387.00",
+  "occurred_at" : "2012-09-14T16:14:58",
+  "version" : "3"
+}
+, {
+  "region" : "Hawaii region, Hawaii",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-155.0412",
+    "latitude" : "18.9262"
+  },
+  "source" : "hv",
+  "magnitude" : "2.3",
+  "number_of_stations" : "45",
+  "earthquake_id" : "60386112",
+  "depth" : "11.20",
+  "occurred_at" : "2012-09-14T15:46:38",
+  "version" : "2"
+}
+, {
+  "region" : "Virgin Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-64.1552",
+    "latitude" : "19.4055"
+  },
+  "source" : "pr",
+  "magnitude" : "3.2",
+  "number_of_stations" : "4",
+  "earthquake_id" : "12258008",
+  "depth" : "84.00",
+  "occurred_at" : "2012-09-14T15:34:17",
+  "version" : "0"
+}
+, {
+  "region" : "Northern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.3543",
+    "latitude" : "40.3282"
+  },
+  "source" : "nc",
+  "magnitude" : "1.1",
+  "number_of_stations" : "9",
+  "earthquake_id" : "71842120",
+  "depth" : "3.00",
+  "occurred_at" : "2012-09-14T14:46:29",
+  "version" : "2"
+}
+, {
+  "region" : "Central Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-151.128",
+    "latitude" : "63.2661"
+  },
+  "source" : "ak",
+  "magnitude" : "1.3",
+  "number_of_stations" : "8",
+  "earthquake_id" : "10559300",
+  "depth" : "5.10",
+  "occurred_at" : "2012-09-14T14:41:19",
+  "version" : "1"
+}
+, {
+  "region" : "Central Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-149.0148",
+    "latitude" : "64.6962"
+  },
+  "source" : "ak",
+  "magnitude" : "1.2",
+  "number_of_stations" : "11",
+  "earthquake_id" : "10559293",
+  "depth" : "20.50",
+  "occurred_at" : "2012-09-14T14:16:50",
+  "version" : "1"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-150.8691",
+    "latitude" : "61.7072"
+  },
+  "source" : "ak",
+  "magnitude" : "1.0",
+  "number_of_stations" : "6",
+  "earthquake_id" : "10559292",
+  "depth" : "68.40",
+  "occurred_at" : "2012-09-14T14:14:54",
+  "version" : "1"
+}
+, {
+  "region" : "Central California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-118.4317",
+    "latitude" : "37.5235"
+  },
+  "source" : "nc",
+  "magnitude" : "1.7",
+  "number_of_stations" : "14",
+  "earthquake_id" : "71842110",
+  "depth" : "9.80",
+  "occurred_at" : "2012-09-14T14:13:08",
+  "version" : "0"
+}
+, {
+  "region" : "Greater Los Angeles area, California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-117.6575",
+    "latitude" : "33.7362"
+  },
+  "source" : "ci",
+  "magnitude" : "1.6",
+  "number_of_stations" : "12",
+  "earthquake_id" : "15215553",
+  "depth" : "4.90",
+  "occurred_at" : "2012-09-14T14:05:47",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.7623",
+    "latitude" : "33.4848"
+  },
+  "source" : "ci",
+  "magnitude" : "1.1",
+  "number_of_stations" : "48",
+  "earthquake_id" : "15215545",
+  "depth" : "7.50",
+  "occurred_at" : "2012-09-14T14:03:54",
+  "version" : "0"
+}
+, {
+  "region" : "Andreanof Islands, Aleutian Islands, Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-176.5001",
+    "latitude" : "51.1489"
+  },
+  "source" : "ak",
+  "magnitude" : "2.4",
+  "number_of_stations" : "11",
+  "earthquake_id" : "10559287",
+  "depth" : "17.90",
+  "occurred_at" : "2012-09-14T13:58:31",
+  "version" : "2"
+}
+, {
+  "region" : "Fox Islands, Aleutian Islands, Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-169.4689",
+    "latitude" : "52.7707"
+  },
+  "source" : "ak",
+  "magnitude" : "2.2",
+  "number_of_stations" : "6",
+  "earthquake_id" : "10559285",
+  "depth" : "11.80",
+  "occurred_at" : "2012-09-14T13:54:14",
+  "version" : "2"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-153.8917",
+    "latitude" : "61.7147"
+  },
+  "source" : "ak",
+  "magnitude" : "1.5",
+  "number_of_stations" : "9",
+  "earthquake_id" : "10559283",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-14T13:43:34",
+  "version" : "1"
+}
+, {
+  "region" : "Alaska Peninsula",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-161.1602",
+    "latitude" : "54.4282"
+  },
+  "source" : "ak",
+  "magnitude" : "3.5",
+  "number_of_stations" : "18",
+  "earthquake_id" : "10559280",
+  "depth" : "3.70",
+  "occurred_at" : "2012-09-14T13:32:23",
+  "version" : "2"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.0278",
+    "latitude" : "33.2343"
+  },
+  "source" : "ci",
+  "magnitude" : "1.5",
+  "number_of_stations" : "54",
+  "earthquake_id" : "15215537",
+  "depth" : "6.20",
+  "occurred_at" : "2012-09-14T13:25:25",
+  "version" : "0"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.439",
+    "latitude" : "33.462"
+  },
+  "source" : "ci",
+  "magnitude" : "1.5",
+  "number_of_stations" : "71",
+  "earthquake_id" : "15215505",
+  "depth" : "9.40",
+  "occurred_at" : "2012-09-14T12:17:07",
+  "version" : "2"
+}
+, {
+  "region" : "Southern Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-146.7484",
+    "latitude" : "61.4248"
+  },
+  "source" : "ak",
+  "magnitude" : "1.5",
+  "number_of_stations" : "9",
+  "earthquake_id" : "10559270",
+  "depth" : "29.30",
+  "occurred_at" : "2012-09-14T12:16:25",
+  "version" : "1"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.92",
+    "latitude" : "35.5552"
+  },
+  "source" : "ci",
+  "magnitude" : "1.3",
+  "number_of_stations" : "16",
+  "earthquake_id" : "15215513",
+  "depth" : "3.30",
+  "occurred_at" : "2012-09-14T12:15:30",
+  "version" : "2"
+}
+, {
+  "region" : "Southern California",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-116.4417",
+    "latitude" : "33.4583"
+  },
+  "source" : "ci",
+  "magnitude" : "1.9",
+  "number_of_stations" : "105",
+  "earthquake_id" : "15215497",
+  "depth" : "9.90",
+  "occurred_at" : "2012-09-14T12:08:22",
+  "version" : "2"
+}
+ ]

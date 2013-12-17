@@ -1,0 +1,448 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 14 Mar 2013 00:09:33 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+ETag: 66588614c60ab688537b34392e5fd1a7
+Last-Modified: Thu, 27 Sep 2012 13:49:51 PDT
+X-SODA2-Fields: ["region",":updated_at","geolocation","source","magnitude","number_of_stations",":id",":created_at","earthquake_id","depth","occurred_at","version"]
+X-SODA2-Types: ["text","meta_data","location","text","number","number","meta_data","meta_data","text","number","calendar_date","text"]
+X-SODA2-Legacy-Types: true
+
+[ {
+  "region" : "southern Mid-Atlantic Ridge",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-16.0382",
+    "latitude" : "-39.689"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "41",
+  "earthquake_id" : "c000cnmk",
+  "depth" : "10.00",
+  "occurred_at" : "2012-09-14T07:18:38",
+  "version" : "5"
+}
+, {
+  "region" : "southern Mid-Atlantic Ridge",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-16.0594",
+    "latitude" : "-39.6327"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "43",
+  "earthquake_id" : "c000cnmc",
+  "depth" : "10.00",
+  "occurred_at" : "2012-09-14T06:56:17",
+  "version" : "6"
+}
+, {
+  "region" : "Kepulauan Mentawai region, Indonesia",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "100.5877",
+    "latitude" : "-3.3626"
+  },
+  "source" : "us",
+  "magnitude" : "6.2",
+  "number_of_stations" : "521",
+  "earthquake_id" : "c000cnlk",
+  "depth" : "19.80",
+  "occurred_at" : "2012-09-14T04:51:47",
+  "version" : "E"
+}
+, {
+  "region" : "south of Java, Indonesia",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "113.7383",
+    "latitude" : "-10.8088"
+  },
+  "source" : "us",
+  "magnitude" : "5.4",
+  "number_of_stations" : "94",
+  "earthquake_id" : "c000cng3",
+  "depth" : "9.80",
+  "occurred_at" : "2012-09-13T23:40:02",
+  "version" : "9"
+}
+, {
+  "region" : "north of Severnaya Zemlya",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "116.9604",
+    "latitude" : "82.8777"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "204",
+  "earthquake_id" : "c000cn10",
+  "depth" : "9.80",
+  "occurred_at" : "2012-09-13T17:23:47",
+  "version" : "5"
+}
+, {
+  "region" : "near the east coast of Honshu, Japan",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "140.4498",
+    "latitude" : "35.7614"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "294",
+  "earthquake_id" : "c000cn0t",
+  "depth" : "38.30",
+  "occurred_at" : "2012-09-13T17:22:08",
+  "version" : "6"
+}
+, {
+  "region" : "Philippine Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "126.9893",
+    "latitude" : "10.268"
+  },
+  "source" : "us",
+  "magnitude" : "5.4",
+  "number_of_stations" : "179",
+  "earthquake_id" : "c000cmq8",
+  "depth" : "10.00",
+  "occurred_at" : "2012-09-13T05:54:47",
+  "version" : "9"
+}
+, {
+  "region" : "Fiji region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "175.7803",
+    "latitude" : "-18.7618"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "132",
+  "earthquake_id" : "c000cmnf",
+  "depth" : "89.40",
+  "occurred_at" : "2012-09-13T01:55:02",
+  "version" : "5"
+}
+, {
+  "region" : "South Indian Ocean",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "82.9505",
+    "latitude" : "-23.9148"
+  },
+  "source" : "us",
+  "magnitude" : "5.4",
+  "number_of_stations" : "92",
+  "earthquake_id" : "c000cmit",
+  "depth" : "10.00",
+  "occurred_at" : "2012-09-12T21:52:17",
+  "version" : "6"
+}
+, {
+  "region" : "Hindu Kush region, Afghanistan",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "71.3666",
+    "latitude" : "36.6867"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "182",
+  "earthquake_id" : "c000cmah",
+  "depth" : "188.60",
+  "occurred_at" : "2012-09-12T19:29:55",
+  "version" : "7"
+}
+, {
+  "region" : "Solomon Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "161.0712",
+    "latitude" : "-10.1105"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "193",
+  "earthquake_id" : "c000clxn",
+  "depth" : "87.40",
+  "occurred_at" : "2012-09-12T11:27:51",
+  "version" : "9"
+}
+, {
+  "region" : "New Britain region, Papua New Guinea",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "152.1305",
+    "latitude" : "-5.0672"
+  },
+  "source" : "us",
+  "magnitude" : "5.6",
+  "number_of_stations" : "214",
+  "earthquake_id" : "c000clu1",
+  "depth" : "65.70",
+  "occurred_at" : "2012-09-12T04:28:14",
+  "version" : "6"
+}
+, {
+  "region" : "Crete, Greece",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "24.0642",
+    "latitude" : "34.8112"
+  },
+  "source" : "us",
+  "magnitude" : "5.5",
+  "number_of_stations" : "83",
+  "earthquake_id" : "c000cltl",
+  "depth" : "27.40",
+  "occurred_at" : "2012-09-12T03:27:45",
+  "version" : "6"
+}
+, {
+  "region" : "Philippine Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "126.774",
+    "latitude" : "10.7339"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "171",
+  "earthquake_id" : "c000cle4",
+  "depth" : "28.90",
+  "occurred_at" : "2012-09-11T18:10:09",
+  "version" : "8"
+}
+, {
+  "region" : "south of the Mariana Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "143.1973",
+    "latitude" : "11.84"
+  },
+  "source" : "us",
+  "magnitude" : "5.8",
+  "number_of_stations" : "355",
+  "earthquake_id" : "c000clae",
+  "depth" : "3.40",
+  "occurred_at" : "2012-09-11T16:36:49",
+  "version" : "D"
+}
+, {
+  "region" : "south of Java, Indonesia",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "113.8187",
+    "latitude" : "-10.7618"
+  },
+  "source" : "us",
+  "magnitude" : "5.3",
+  "number_of_stations" : "179",
+  "earthquake_id" : "c000cl6d",
+  "depth" : "8.90",
+  "occurred_at" : "2012-09-11T14:21:35",
+  "version" : "7"
+}
+, {
+  "region" : "San Juan, Argentina",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-68.2517",
+    "latitude" : "-31.8261"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "362",
+  "earthquake_id" : "c000cl2g",
+  "depth" : "108.60",
+  "occurred_at" : "2012-09-11T06:35:37",
+  "version" : "9"
+}
+, {
+  "region" : "Kuril Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "151.1889",
+    "latitude" : "45.2939"
+  },
+  "source" : "us",
+  "magnitude" : "5.5",
+  "number_of_stations" : "442",
+  "earthquake_id" : "c000ckz7",
+  "depth" : "14.70",
+  "occurred_at" : "2012-09-11T01:28:19",
+  "version" : "A"
+}
+, {
+  "region" : "Andaman Islands, India region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "93.6108",
+    "latitude" : "10.4652"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "185",
+  "earthquake_id" : "c000ck8v",
+  "depth" : "37.70",
+  "occurred_at" : "2012-09-10T14:35:42",
+  "version" : "8"
+}
+, {
+  "region" : "Kepulauan Talaud, Indonesia",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "126.1887",
+    "latitude" : "3.9931"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "68",
+  "earthquake_id" : "c000ck6q",
+  "depth" : "42.40",
+  "occurred_at" : "2012-09-10T11:23:29",
+  "version" : "6"
+}
+, {
+  "region" : "Near Islands, Aleutian Islands, Alaska",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "174.9362",
+    "latitude" : "52.8187"
+  },
+  "source" : "us",
+  "magnitude" : "5.3",
+  "number_of_stations" : "431",
+  "earthquake_id" : "c000cjlh",
+  "depth" : "120.60",
+  "occurred_at" : "2012-09-09T19:23:51",
+  "version" : "8"
+}
+, {
+  "region" : "Kuril Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "151.3277",
+    "latitude" : "45.2814"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "393",
+  "earthquake_id" : "c000cjfu",
+  "depth" : "30.80",
+  "occurred_at" : "2012-09-09T09:36:40",
+  "version" : "9"
+}
+, {
+  "region" : "Kuril Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "155.7304",
+    "latitude" : "49.2675"
+  },
+  "source" : "us",
+  "magnitude" : "6.0",
+  "number_of_stations" : "210",
+  "earthquake_id" : "c000cmre",
+  "depth" : "25.90",
+  "occurred_at" : "2012-09-09T05:39:36",
+  "version" : "9"
+}
+, {
+  "region" : "Kuril Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "155.591",
+    "latitude" : "49.388"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "481",
+  "earthquake_id" : "c000cjd2",
+  "depth" : "20.10",
+  "occurred_at" : "2012-09-09T05:39:16",
+  "version" : "7"
+}
+, {
+  "region" : "Costa Rica",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-85.3416",
+    "latitude" : "10.0735"
+  },
+  "source" : "us",
+  "magnitude" : "5.6",
+  "number_of_stations" : "647",
+  "earthquake_id" : "c000cj5l",
+  "depth" : "35.10",
+  "occurred_at" : "2012-09-08T20:29:31",
+  "version" : "9"
+}
+, {
+  "region" : "Molucca Sea",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "126.7318",
+    "latitude" : "2.4048"
+  },
+  "source" : "us",
+  "magnitude" : "5.1",
+  "number_of_stations" : "106",
+  "earthquake_id" : "c000cj09",
+  "depth" : "35.00",
+  "occurred_at" : "2012-09-08T16:27:39",
+  "version" : "7"
+}
+, {
+  "region" : "Papua, Indonesia",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "135.0841",
+    "latitude" : "-3.1895"
+  },
+  "source" : "us",
+  "magnitude" : "6.1",
+  "number_of_stations" : "477",
+  "earthquake_id" : "c000cium",
+  "depth" : "14.10",
+  "occurred_at" : "2012-09-08T10:51:43",
+  "version" : "A"
+}
+, {
+  "region" : "Mariana Islands region",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "145.9213",
+    "latitude" : "21.5174"
+  },
+  "source" : "us",
+  "magnitude" : "5.7",
+  "number_of_stations" : "446",
+  "earthquake_id" : "c000cirx",
+  "depth" : "9.20",
+  "occurred_at" : "2012-09-08T06:54:19",
+  "version" : "C"
+}
+, {
+  "region" : "Solomon Islands",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "160.3674",
+    "latitude" : "-9.8205"
+  },
+  "source" : "us",
+  "magnitude" : "5.2",
+  "number_of_stations" : "181",
+  "earthquake_id" : "c000ciq3",
+  "depth" : "48.70",
+  "occurred_at" : "2012-09-08T04:11:48",
+  "version" : "7"
+}
+ ]

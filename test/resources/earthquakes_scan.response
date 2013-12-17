@@ -1,0 +1,131 @@
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 14 Mar 2013 00:41:05 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+  "fileId" : "nX6jHavDxGyQaV_xpE-KpXuXqjEn8extwSFTwhCDAoc",
+  "summary" : {
+    "headers" : 0,
+    "columns" : [ {
+      "name" : "Src",
+      "processed" : 10,
+      "suggestion" : "text",
+      "types" : {
+        "number" : 0,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 0,
+        "percent" : 0
+      }
+    }, {
+      "name" : "Eqid",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 9,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Version",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 9,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Datetime",
+      "processed" : 10,
+      "suggestion" : "calendar_date",
+      "types" : {
+        "number" : 0,
+        "text" : 10,
+        "calendar_date" : 9,
+        "money" : 0,
+        "percent" : 0
+      }
+    }, {
+      "name" : "Lat",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Lon",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Magnitude",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Depth",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "NST",
+      "processed" : 10,
+      "suggestion" : "number",
+      "types" : {
+        "number" : 9,
+        "text" : 10,
+        "calendar_date" : 9,
+        "money" : 9,
+        "percent" : 9
+      }
+    }, {
+      "name" : "Region",
+      "processed" : 10,
+      "suggestion" : "text",
+      "types" : {
+        "number" : 0,
+        "text" : 10,
+        "calendar_date" : 0,
+        "money" : 0,
+        "percent" : 0
+      }
+    } ],
+    "locations" : [ {
+      "latitude" : 4,
+      "longitude" : 5
+    } ],
+    "sample" : [ [ "Src", "Eqid", "Version", "Datetime", "Lat", "Lon", "Magnitude", "Depth", "NST", "Region" ], [ "nn", "00388610", "9", "2012-09-14 22:38:01", "41.1085", "-117.6135", "2.7", "7.60", "15", "Nevada" ], [ "ci", "15215753", "0", "2012-09-14 22:14:45", "34.5250", "-118.1527", "1.5", "10.60", "35", "Southern California" ], [ "nc", "71842370", "0", "2012-09-14 22:14:21", "38.8023", "-122.7685", "1.4", "0.00", "21", "Northern California" ], [ "nn", "00388609", "9", "2012-09-14 22:10:19", "36.9447", "-117.6778", "1.5", "8.20", "29", "Central California" ], [ "nn", "00388607", "9", "2012-09-14 22:06:11", "36.9417", "-117.6903", "1.7", "6.40", "29", "Central California" ], [ "pr", "12258012", "0", "2012-09-14 21:28:55", "19.7859", "-64.0849", "3.1", "20.00", " 6", "north of the Virgin Islands" ], [ "hv", "60397836", "2", "2012-09-14 21:23:32", "19.3373", "-155.1370", "1.8", "6.00", "17", "Island of Hawaii, Hawaii" ], [ "hv", "60397821", "1", "2012-09-14 20:30:14", "19.8460", "-155.5577", "2.3", "30.80", "36", "Island of Hawaii, Hawaii" ], [ "nc", "71842325", "1", "2012-09-14 20:17:42", "38.8375", "-122.7730", "1.6", "2.10", "29", "Northern California" ] ]
+  }
+}

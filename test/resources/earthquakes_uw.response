@@ -1,0 +1,403 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 14 Mar 2013 00:03:57 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+ETag: 88da3bd340dbe935347637a128ed9c8
+Last-Modified: Thu, 27 Sep 2012 20:49:51 UTC
+X-SODA2-Fields: ["region",":updated_at","geolocation","source","magnitude","number_of_stations",":id",":created_at","earthquake_id","depth","occurred_at","version"]
+X-SODA2-Types: ["text","meta_data","location","text","number","number","meta_data","meta_data","text","number","calendar_date","text"]
+X-SODA2-Legacy-Types: true
+
+[ {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-120.5032",
+    "latitude" : "49.4012"
+  },
+  "source" : "uw",
+  "magnitude" : "2.3",
+  "number_of_stations" : "11",
+  "earthquake_id" : "60451507",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-13T23:06:29",
+  "version" : "2"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-120.0137",
+    "latitude" : "47.3452"
+  },
+  "source" : "uw",
+  "magnitude" : "3.3",
+  "number_of_stations" : "38",
+  "earthquake_id" : "60451342",
+  "depth" : "12.70",
+  "occurred_at" : "2012-09-13T17:33:45",
+  "version" : "1"
+}
+, {
+  "region" : "Mount Rainier area, Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.7577",
+    "latitude" : "46.854"
+  },
+  "source" : "uw",
+  "magnitude" : "2.4",
+  "number_of_stations" : "41",
+  "earthquake_id" : "60451252",
+  "depth" : "2.70",
+  "occurred_at" : "2012-09-13T15:44:59",
+  "version" : "4"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.4432",
+    "latitude" : "46.5543"
+  },
+  "source" : "uw",
+  "magnitude" : "1.1",
+  "number_of_stations" : "31",
+  "earthquake_id" : "60451197",
+  "depth" : "16.60",
+  "occurred_at" : "2012-09-13T11:52:57",
+  "version" : "2"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.4262",
+    "latitude" : "46.5062"
+  },
+  "source" : "uw",
+  "magnitude" : "1.0",
+  "number_of_stations" : "31",
+  "earthquake_id" : "60451092",
+  "depth" : "18.60",
+  "occurred_at" : "2012-09-13T04:06:44",
+  "version" : "1"
+}
+, {
+  "region" : "Puget Sound region, Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.9545",
+    "latitude" : "48.0922"
+  },
+  "source" : "uw",
+  "magnitude" : "1.6",
+  "number_of_stations" : "22",
+  "earthquake_id" : "60451002",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-12T21:32:02",
+  "version" : "2"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-123.4565",
+    "latitude" : "45.7477"
+  },
+  "source" : "uw",
+  "magnitude" : "1.9",
+  "number_of_stations" : "15",
+  "earthquake_id" : "60450992",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-12T20:53:24",
+  "version" : "3"
+}
+, {
+  "region" : "Puget Sound region, Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.9883",
+    "latitude" : "46.9968"
+  },
+  "source" : "uw",
+  "magnitude" : "1.4",
+  "number_of_stations" : "12",
+  "earthquake_id" : "60450982",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-12T20:31:16",
+  "version" : "1"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.812",
+    "latitude" : "47.5213"
+  },
+  "source" : "uw",
+  "magnitude" : "1.2",
+  "number_of_stations" : "22",
+  "earthquake_id" : "60450672",
+  "depth" : "15.20",
+  "occurred_at" : "2012-09-11T21:02:17",
+  "version" : "1"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-117.856",
+    "latitude" : "47.337"
+  },
+  "source" : "uw",
+  "magnitude" : "2.2",
+  "number_of_stations" : "16",
+  "earthquake_id" : "60450627",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-11T19:28:58",
+  "version" : "1"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-123.0163",
+    "latitude" : "43.4345"
+  },
+  "source" : "uw",
+  "magnitude" : "1.0",
+  "number_of_stations" : "9",
+  "earthquake_id" : "60450607",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-11T19:04:27",
+  "version" : "1"
+}
+, {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.1848",
+    "latitude" : "49.1975"
+  },
+  "source" : "uw",
+  "magnitude" : "1.0",
+  "number_of_stations" : "13",
+  "earthquake_id" : "60450432",
+  "depth" : "10.20",
+  "occurred_at" : "2012-09-11T13:29:36",
+  "version" : "2"
+}
+, {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.1342",
+    "latitude" : "49.1003"
+  },
+  "source" : "uw",
+  "magnitude" : "2.2",
+  "number_of_stations" : "17",
+  "earthquake_id" : "60450427",
+  "depth" : "10.60",
+  "occurred_at" : "2012-09-11T13:09:34",
+  "version" : "2"
+}
+, {
+  "region" : "offshore Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-124.0107",
+    "latitude" : "45.2368"
+  },
+  "source" : "uw",
+  "magnitude" : "1.4",
+  "number_of_stations" : "16",
+  "earthquake_id" : "60450282",
+  "depth" : "4.70",
+  "occurred_at" : "2012-09-11T02:12:02",
+  "version" : "2"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.3167",
+    "latitude" : "45.6817"
+  },
+  "source" : "uw",
+  "magnitude" : "1.1",
+  "number_of_stations" : "14",
+  "earthquake_id" : "60450252",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-10T23:10:11",
+  "version" : "2"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-123.8978",
+    "latitude" : "45.9267"
+  },
+  "source" : "uw",
+  "magnitude" : "1.9",
+  "number_of_stations" : "11",
+  "earthquake_id" : "60450217",
+  "depth" : "22.50",
+  "occurred_at" : "2012-09-10T21:36:46",
+  "version" : "1"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.9132",
+    "latitude" : "48.314"
+  },
+  "source" : "uw",
+  "magnitude" : "1.1",
+  "number_of_stations" : "16",
+  "earthquake_id" : "60450052",
+  "depth" : "8.50",
+  "occurred_at" : "2012-09-10T14:43:12",
+  "version" : "2"
+}
+, {
+  "region" : "Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.697",
+    "latitude" : "47.5905"
+  },
+  "source" : "uw",
+  "magnitude" : "1.2",
+  "number_of_stations" : "15",
+  "earthquake_id" : "60450042",
+  "depth" : "17.40",
+  "occurred_at" : "2012-09-10T12:16:33",
+  "version" : "2"
+}
+, {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.1168",
+    "latitude" : "49.0968"
+  },
+  "source" : "uw",
+  "magnitude" : "2.3",
+  "number_of_stations" : "16",
+  "earthquake_id" : "60450032",
+  "depth" : "1.30",
+  "occurred_at" : "2012-09-10T10:10:56",
+  "version" : "3"
+}
+, {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-121.1303",
+    "latitude" : "49.1088"
+  },
+  "source" : "uw",
+  "magnitude" : "1.9",
+  "number_of_stations" : "22",
+  "earthquake_id" : "60449977",
+  "depth" : "10.00",
+  "occurred_at" : "2012-09-10T00:32:03",
+  "version" : "2"
+}
+, {
+  "region" : "San Juan Islands region, Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.5883",
+    "latitude" : "48.5218"
+  },
+  "source" : "uw",
+  "magnitude" : "1.1",
+  "number_of_stations" : "25",
+  "earthquake_id" : "60449827",
+  "depth" : "16.20",
+  "occurred_at" : "2012-09-09T10:30:30",
+  "version" : "2"
+}
+, {
+  "region" : "British Columbia, Canada",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-120.5342",
+    "latitude" : "49.4507"
+  },
+  "source" : "uw",
+  "magnitude" : "2.3",
+  "number_of_stations" : "10",
+  "earthquake_id" : "60449497",
+  "depth" : "0.00",
+  "occurred_at" : "2012-09-08T23:01:24",
+  "version" : "2"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.6918",
+    "latitude" : "45.071"
+  },
+  "source" : "uw",
+  "magnitude" : "1.1",
+  "number_of_stations" : "9",
+  "earthquake_id" : "60019803",
+  "depth" : "8.40",
+  "occurred_at" : "2012-09-08T08:37:54",
+  "version" : "1"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.6915",
+    "latitude" : "45.1222"
+  },
+  "source" : "uw",
+  "magnitude" : "3.5",
+  "number_of_stations" : "52",
+  "earthquake_id" : "60449207",
+  "depth" : "22.60",
+  "occurred_at" : "2012-09-08T04:57:45",
+  "version" : "3"
+}
+, {
+  "region" : "Oregon",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.5737",
+    "latitude" : "45.0903"
+  },
+  "source" : "uw",
+  "magnitude" : "1.4",
+  "number_of_stations" : "15",
+  "earthquake_id" : "60449157",
+  "depth" : "25.90",
+  "occurred_at" : "2012-09-08T01:38:50",
+  "version" : "2"
+}
+, {
+  "region" : "San Juan Islands region, Washington",
+  "geolocation" : {
+    "needs_recoding" : false,
+    "longitude" : "-122.688",
+    "latitude" : "48.4875"
+  },
+  "source" : "uw",
+  "magnitude" : "1.6",
+  "number_of_stations" : "35",
+  "earthquake_id" : "60449137",
+  "depth" : "25.00",
+  "occurred_at" : "2012-09-07T23:10:09",
+  "version" : "1"
+}
+ ]

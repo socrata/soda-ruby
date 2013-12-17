@@ -1,0 +1,12 @@
+HTTP/1.1 500 Server Error
+Date: Wed, 13 Mar 2013 23:03:50 GMT
+X-Error-Message: Internal error
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Server: Jetty(8.1.2.v20120308)
+
+{
+  "error" : true,
+  "message" : "Internal error",
+  "status" : 500
+}

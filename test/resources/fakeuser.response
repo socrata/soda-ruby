@@ -1,0 +1,63 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 14 Mar 2013 00:21:02 GMT
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+{
+  "id" : "fake-user",
+  "country" : "US",
+  "createdAt" : 1211927672,
+  "createdOnDomainId" : 1,
+  "description" : "Director of Product Management & Developer Evangelism for Socrata",
+  "displayName" : "Chris Metcalf",
+  "email" : "fakeuser@socrata.com",
+  "emailUnsubscribed" : false,
+  "interests" : "Open Government, Technology, Software Engineering, Photography, Sailing, Skiing, Homebrewing",
+  "lastLogin" : 1363220018,
+  "login" : "chris.metcalf",
+  "numberOfFollowers" : 52,
+  "numberOfFriends" : 36,
+  "oid" : 21484,
+  "privacyControl" : "login",
+  "profileImageUrlLarge" : "/images/profile/3353/3169/project_managing_reasonably_sized_large.jpg",
+  "profileImageUrlMedium" : "/images/profile/3353/3169/project_managing_reasonably_sized_thumb.jpg",
+  "profileImageUrlSmall" : "/images/profile/3353/3169/project_managing_reasonably_sized_tiny.jpg",
+  "profileLastModified" : 1360171451,
+  "publicTables" : 0,
+  "publicViews" : 0,
+  "screenName" : "Chris Metcalf",
+  "state" : "wa",
+  "rights" : [ "create_datasets", "edit_others_datasets", "edit_sdp", "edit_site_theme", "moderate_comments", "manage_users", "chown_datasets", "edit_nominations", "approve_nominations", "feature_items", "federations", "manage_stories", "manage_approval", "change_configurations", "view_domain", "view_others_datasets", "edit_pages", "create_pages" ],
+  "tags" : [ "blist", "employee", "sailor", "techie", "tpm" ],
+  "userLinks" : [ {
+    "id" : 1590,
+    "linkType" : "facebook",
+    "url" : "http://facebook.com/chrismetcalf"
+  }, {
+    "id" : 6,
+    "label" : "My Flickr Photos",
+    "linkType" : "flickr",
+    "url" : "http://flickr.com/photos/chrismetcalf"
+  }, {
+    "id" : 8,
+    "label" : "blist.com",
+    "linkType" : "my_company",
+    "url" : "http://blist.com"
+  }, {
+    "id" : 7,
+    "label" : "My Blog",
+    "linkType" : "my_site",
+    "url" : "http://chrismetcalf.net"
+  }, {
+    "id" : 1591,
+    "linkType" : "other",
+    "url" : "http://github.com/chrismetcalf"
+  }, {
+    "id" : 1,
+    "label" : "My Twitter updates",
+    "linkType" : "twitter",
+    "url" : "http://twitter.com/chrismetcalf"
+  } ]
+}

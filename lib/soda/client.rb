@@ -6,6 +6,7 @@ require 'uri'
 require 'json'
 require 'cgi'
 require 'hashie'
+require 'curb'
 
 module SODA
   class Client
@@ -15,21 +16,10 @@ module SODA
 
     def get(resource, params = {})
       query = query_string(params)
-
-      # If we didn't get a full path, assume "/resource/"
-      if !resource.start_with?("/")
-        resource = "/resource/" + resource
-      end
-
-      # Check to see if we were given an output type
-      extension = ".json"
-      if matches = resource.match(/^(.+)(\.\w+)$/)
-        resource = matches.captures[0]
-        extension = matches.captures[1]
-      end
+      path = resource_path(resource)
 
       # Create our request
-      uri = URI.parse("https://#{@config[:domain]}#{resource}#{extension}?#{query}")
+      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
@@ -42,28 +32,67 @@ module SODA
       end
 
       # BAM!
-      response = http.request(request)
-
-      # Check our response code
-      if response.code != "200"
-        raise "Error querying \"#{uri.to_s}\": #{response.body}"
-      else
-        if extension == ".json"
-          # Return a bunch of mashes if we're JSON
-          response = JSON::parse(response.body)
-          if response.is_a? Array
-            return response.collect { |r| Hashie::Mash.new(r) }
-          else
-            return Hashie::Mash.new(response)
-          end
-        else
-          # We don't partically care, just return the raw body
-          return response.body
-        end
-      end
+      return handle_response(http.request(request))
     end
 
     def post(resource, body = "", params = {})
+      query = query_string(params)
+      path = resource_path(resource)
+
+      # Create our request
+      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.add_field("X-App-Token", @config[:app_token])
+      request.content_type = "application/json"
+      request.body = body.to_json
+
+      # Authenticate if we're supposed to
+      if @config[:username]
+        request.basic_auth @config[:username], @config[:password]
+      end
+
+      # BAM!
+      return handle_response(http.request(request))
+    end
+
+    def put(resource, body = "", params = {})
+      query = query_string(params)
+      path = resource_path(resource)
+
+      # Create our request
+      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Put.new(uri.request_uri)
+      request.add_field("X-App-Token", @config[:app_token])
+      request.content_type = "application/json"
+      request.body = body.to_json
+
+      # Authenticate if we're supposed to
+      if @config[:username]
+        request.basic_auth @config[:username], @config[:password]
+      end
+
+      # BAM!
+      return handle_response(http.request(request))
+    end
+
+    def upload_file(path, filename, params = {}, field = 'file', remote_filename = filename)
+      # c = Curl::Easy.new("https://#{@config[:domain]}#{path}?#{query_string(params)}")
+      # c.multipart_form_post = true
+      # c.http_auth_types = :basic
+      # c.username = @config[:username]
+      # c.password = @config[:password]
+      # c.headers['X-App-Token'] = @config[:app_token]
+      # c.http_post(Curl::PostField.file(field, filename, remote_filename))
+
+      # puts c.body_str.inspect
+      # return Hashie::Mash.new(JSON.parse(c.body_str))
+
       query = query_string(params)
 
       # If we didn't get a full path, assume "/resource/"
@@ -87,39 +116,24 @@ module SODA
       end
 
       # BAM!
-      response = http.request(request)
-
-      # Check our response code
-      if response.code != "200"
-        raise "Error querying \"#{uri.to_s}\": #{response.body}"
-      else
-        # Return a bunch of mashes
-        response = JSON::parse(response.body)
-        if response.is_a? Array
-          return response.collect { |r| Hashie::Mash.new(r) }
-        else
-          return Hashie::Mash.new(response)
-        end
-      end
+      return handle_response(http.request(request))
     end
 
-    def put(resource, body = "", params = {})
+    def post_form(path, fields = {}, params = {})
       query = query_string(params)
-
-      # If we didn't get a full path, assume "/resource/"
-      if !resource.start_with?("/")
-        resource = "/resource/" + resource
-      end
+      resource = resoure_path(path)
 
       # Create our request
       uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      if @config[:ignore_ssl]
+        http.auth.ssl.verify_mode = openssl::ssl::verify_none
+      end
 
-      request = Net::HTTP::Put.new(uri.request_uri)
+      request = Net::HTTP::Post.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
-      request.content_type = "application/json"
-      request.body = body.to_json
+      request.set_form_data(fields)
 
       # Authenticate if we're supposed to
       if @config[:username]
@@ -127,20 +141,7 @@ module SODA
       end
 
       # BAM!
-      response = http.request(request)
-
-      # Check our response code
-      if response.code != "200"
-        raise "Error querying \"#{uri.to_s}\": #{response.body}"
-      else
-        # Return a bunch of mashes
-        response = JSON::parse(response.body)
-        if response.is_a? Array
-          return response.collect { |r| Hashie::Mash.new(r) }
-        else
-          return Hashie::Mash.new(response)
-        end
-      end
+      return handle_response(http.request(request))
     end
 
     def delete(resource, body = "", params = {})
@@ -179,9 +180,45 @@ module SODA
     end
 
     private
-      def query_string(params) 
+      def query_string(params)
         # Create query string of escaped key, value pairs
         return params.collect{ |key, val| "#{key}=#{CGI::escape(val.to_s)}" }.join("&")
+      end
+
+      def resource_path(resource)
+        # If we didn't get a full path, assume "/resource/"
+        if !resource.start_with?("/")
+          resource = "/resource/" + resource
+        end
+
+        # Check to see if we were given an output type
+        extension = ".json"
+        if matches = resource.match(/^(.+)(\.\w+)$/)
+          resource = matches.captures[0]
+          extension = matches.captures[1]
+        end
+
+        return resource + extension
+      end
+
+      def handle_response(response)
+        # Check our response code
+        if response.code != "200"
+          raise "Error in request: #{response.body}"
+        else
+          if response["Content-Type"].include?("application/json")
+            # Return a bunch of mashes if we're JSON
+            response = JSON::parse(response.body)
+            if response.is_a? Array
+              return response.collect { |r| Hashie::Mash.new(r) }
+            else
+              return Hashie::Mash.new(response)
+            end
+          else
+            # We don't partically care, just return the raw body
+            return response.body
+          end
+        end
       end
   end
 end
