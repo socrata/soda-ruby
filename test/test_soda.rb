@@ -3,7 +3,6 @@ require 'shoulda'
 require 'soda/client'
 
 # NOTE: These tests are by no means exhaustive, they're just a start
-
 class SODATest < Test::Unit::TestCase
   context "earthquakes" do
     setup do
