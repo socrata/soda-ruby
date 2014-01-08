@@ -141,15 +141,9 @@ module SODA
 
         query = query_string(params)
 
-        if method === :Delete
-            if !resource.start_with?("/")
-              resource = "/resource/" + resource 
-            end
-            uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
-        else
-          path = resource_path(resource)
-          uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
-        end
+        path = resource_path(resource)
+
+        uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
