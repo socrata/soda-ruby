@@ -135,8 +135,7 @@ module SODA
         end
       end
 
-      def connection(method, resource, body = nil, params = {})
-        method ||= :Get
+      def connection(method = "Get", resource, body = nil, params = {})
         method = method.to_sym.capitalize
 
         query = query_string(params)
