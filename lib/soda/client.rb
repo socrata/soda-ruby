@@ -135,8 +135,7 @@ module SODA
         end
       end
 
-      def connection(method, resource, body ="", params = {})
-        method ||= :Get
+      def connection(method = :Get, resource, body ="", params = {})
         method = method.to_sym.capitalize
 
         query = query_string(params)
@@ -154,9 +153,9 @@ module SODA
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
         request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
-        
+        request.add_field("X-App-Token", @config[:app_token])
+
         if method === :Post || :Put || :Delete
-          request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
           request.content_type = "application/json"
           request.body = body.to_json      
         end
