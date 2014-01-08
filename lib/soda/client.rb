@@ -18,15 +18,15 @@ module SODA
       connection(:get, resource, nil, params)
     end
 
-    def post(resource, body = "", params = {})
+    def post(resource, body = nil, params = {})
       connection(:post, resource, body, params)
     end
 
-    def put(resource, body = "", params = {})
+    def put(resource, body = nil, params = {})
       connection(:put, resource, body, params)
     end
 
-    def delete(resource, body = "", params = {})
+    def delete(resource, body = nil, params = {})
       connection(:delete, resource, body, params)
     end
 
@@ -135,7 +135,8 @@ module SODA
         end
       end
 
-      def connection(method = :Get, resource, body ="", params = {})
+      def connection(method, resource, body = nil, params = {})
+        method ||= :Get
         method = method.to_sym.capitalize
 
         query = query_string(params)
