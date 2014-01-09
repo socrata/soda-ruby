@@ -2,3 +2,4 @@
 0.2.1 - Point release to update gemspec dependencies
 ...
 0.2.4 - Point release including tests that are now mocked properly
+0.2.6 - Code cleanup from @raykao
