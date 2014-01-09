@@ -135,7 +135,7 @@ module SODA
         end
       end
 
-      def connection(method = "Get", resource, body = nil, params = {})
+      def connection(method = "Get", resource = nil, body = nil, params = {})
         method = method.to_sym.capitalize
 
         query = query_string(params)
@@ -151,7 +151,7 @@ module SODA
 
         if method === :Post || :Put || :Delete
           request.content_type = "application/json"
-          request.body = body.to_json      
+          request.body = body.to_json
         end
 
         # Authenticate if we're supposed to
