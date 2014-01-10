@@ -6,7 +6,6 @@ require 'uri'
 require 'json'
 require 'cgi'
 require 'hashie'
-require 'curb'
 
 module SODA
   class Client
@@ -28,44 +27,6 @@ module SODA
 
     def delete(resource, body = nil, params = {})
       connection(:delete, resource, body, params)
-    end
-
-    def upload_file(path, filename, params = {}, field = 'file', remote_filename = filename)
-      # c = Curl::Easy.new("https://#{@config[:domain]}#{path}?#{query_string(params)}")
-      # c.multipart_form_post = true
-      # c.http_auth_types = :basic
-      # c.username = @config[:username]
-      # c.password = @config[:password]
-      # c.headers['X-App-Token'] = @config[:app_token]
-      # c.http_post(Curl::PostField.file(field, filename, remote_filename))
-
-      # puts c.body_str.inspect
-      # return Hashie::Mash.new(JSON.parse(c.body_str))
-
-      query = query_string(params)
-
-      # If we didn't get a full path, assume "/resource/"
-      if !resource.start_with?("/")
-        resource = "/resource/" + resource
-      end
-
-      # Create our request
-      uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-
-      request = Net::HTTP::Post.new(uri.request_uri)
-      request.add_field("X-App-Token", @config[:app_token])
-      request.content_type = "application/json"
-      request.body = body.to_json
-
-      # Authenticate if we're supposed to
-      if @config[:username]
-        request.basic_auth @config[:username], @config[:password]
-      end
-
-      # BAM!
-      return handle_response(http.request(request))
     end
 
     def post_form(path, fields = {}, params = {})

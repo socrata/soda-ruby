@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = ">= 1.3.6"
 
-  # lol - required for validation
+  # required for validation
   s.rubyforge_project         = "soda-ruby"
 
   # If you need to check in files that aren't .rb files, add them here

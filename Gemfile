@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
 gem 'hashie'
-gem 'curb'
 gem 'multipart-post'
 
 group :development do
