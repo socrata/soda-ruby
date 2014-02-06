@@ -83,7 +83,7 @@ module SODA
         else
           if response["Content-Type"].include?("application/json")
             # Return a bunch of mashes if we're JSON
-            response = JSON::parse(response.body)
+            response = JSON::parse(response.body, :max_nesting => false)
             if response.is_a? Array
               return response.collect { |r| Hashie::Mash.new(r) }
             else
