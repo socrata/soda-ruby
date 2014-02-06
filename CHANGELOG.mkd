@@ -4,3 +4,4 @@
 0.2.4 - Point release including tests that are now mocked properly
 0.2.6 - Code cleanup from @raykao
 0.2.7 - Removing dead code and an un-needed dependency
+0.2.8 - Removing the nesting limit on the JSON parser
