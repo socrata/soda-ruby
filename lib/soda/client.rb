@@ -112,7 +112,7 @@ module SODA
 
         if method === :Post || :Put || :Delete
           request.content_type = "application/json"
-          request.body = body.to_json
+          request.body = body.to_json(:max_nesting => false)
         end
 
         # Authenticate if we're supposed to
