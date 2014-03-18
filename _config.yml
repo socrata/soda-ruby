@@ -1,0 +1,11 @@
+destination: "public/soda-ruby"
+exclude: [Gemfile, Gemfile.lock, .rvmrc, public]
+
+# TODO: Get a unique tracking code for soda-ruby
+ga_tracking_code: "UA-9046230-3"
+
+subsite: dev
+title: soda-ruby
+root: "/soda-ruby"
+icon: fa fa-github
+github_repo: https://github.com/socrata/soda-ruby
