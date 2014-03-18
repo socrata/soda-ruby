@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
-# Just a simple wrapper for SODA 2.0
+#
+# A Ruby client to the RESTful Socrata Open Data API
+#
+# For more details, check out http://socrata.github.io/soda-ruby
+#
 
 require 'net/https'
 require 'uri'
@@ -9,22 +13,102 @@ require 'hashie'
 
 module SODA
   class Client
+    ##
+    #
+    # Creates a new SODA client.
+    #
+    # * +config+ - A hash of the options to initialize the client with
+    #
+    # == Config Options
+    #
+    # * +:domain+ - The domain you want to access
+    # * +:username+ - Your Socrata username (optional, only necessary for modifying data)
+    # * +:password+ - Your Socrata password (optional, only necessary for modifying data)
+    # * +:app_token+ - Your Socrata application token (register at http://dev.socrata.com/register)
+    #
+    # Returns a SODA::Client instance.
+    #
+    # == Example
+    #
+    #   client = SODA::Client.new({ :domain => "data.agency.gov", :app_token => "CGxarwoQlgQSev4zyUh5aR5J3" })
+    #
     def initialize(config = {})
       @config = config.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     end
 
+    ##
+    #
+    # Retrieve a resource via an HTTP GET request.
+    #
+    # * +resource+ - The resource identifier or path.
+    # * +params+ - A hash of the URL parameters you want to pass
+    #
+    # Returns a Hashie::Mash that you can interact with as a Hash if you want.
+    #
+    # == Example
+    #
+    #   response = client.get("644b-gaut", { :firstname => "OPRAH", :lastname => "WINFREY", "$limit" => 5 })
+    #
     def get(resource, params = {})
       connection(:get, resource, nil, params)
     end
 
+    ##
+    #
+    # Update a resource via an HTTP POST request.
+    #
+    # Requires an authenticated client (both +:username+ and +:password+ passed into the +options+ hash)
+    #
+    # * +resource+ - The resource identifier or path.
+    # * +body+ - The payload to POST. Will be converted to JSON (optional).
+    # * +params+ - A hash of the URL parameters you want to pass (optional).
+    #
+    # Returns a Hashie::Mash that you can interact with as a Hash if you want.
+    #
+    # == Example
+    #
+    #   response = client.post("644b-gaut", [{ :firstname => "OPRAH", :lastname => "WINFREY" }])
+    #
     def post(resource, body = nil, params = {})
       connection(:post, resource, body, params)
     end
 
+    ##
+    #
+    # Replaces a resource via an HTTP PUT request.
+    #
+    # Requires an authenticated client (both +:username+ and +:password+ passed into the +options+ hash)
+    #
+    # * +resource+ - The resource identifier or path.
+    # * +body+ - The payload to POST. Will be converted to JSON (optional).
+    # * +params+ - A hash of the URL parameters you want to pass (optional).
+    #
+    # Returns a Hashie::Mash that you can interact with as a Hash if you want.
+    #
+    # == Example
+    #
+    #   response = client.put("644b-gaut", [{ :firstname => "OPRAH", :lastname => "WINFREY" }])
+    #
     def put(resource, body = nil, params = {})
       connection(:put, resource, body, params)
     end
 
+    ##
+    #
+    # Deletes a resource via an HTTP DELETE request.
+    #
+    # Requires an authenticated client (both +:username+ and +:password+ passed into the +options+ hash)
+    #
+    # * +resource+ - The resource identifier or path.
+    # * +body+ - The payload to send with the DELETE. Will be converted to JSON (optional).
+    # * +params+ - A hash of the URL parameters you want to pass (optional).
+    #
+    # Returns a Hashie::Mash that you can interact with as a Hash if you want.
+    #
+    # == Example
+    #
+    #   response = client.delete("644b-gaut")
+    #
     def delete(resource, body = nil, params = {})
       connection(:delete, resource, body, params)
     end
