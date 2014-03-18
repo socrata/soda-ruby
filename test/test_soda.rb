@@ -94,6 +94,22 @@ class SODATest < Test::Unit::TestCase
       assert_equal 50, body.size
     end
 
+    should "handle a 200 with an empty payload" do
+      stub_request(:get, "https://fakehost.socrata.com/resource/empty.json")
+        .to_return(resource("empty_body.response"))
+
+      uri = URI.parse("https://fakehost.socrata.com/resource/empty.json")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Get.new(uri.request_uri)
+      request.add_field("X-App-Token", "FAKEAPPTOKEN")
+
+      body = @client.send(:handle_response, http.request(request))
+      assert_nil body
+    end
+
+
     should "raise on a 500 error" do
       stub_request(:get, "https://fakehost.socrata.com/kaboom.json")
         .to_return(resource("500_error.response"))

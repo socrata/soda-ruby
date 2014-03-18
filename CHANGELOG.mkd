@@ -5,3 +5,5 @@
 0.2.6 - Code cleanup from @raykao
 0.2.7 - Removing dead code and an un-needed dependency
 0.2.8 - Removing the nesting limit on the JSON parser
+0.2.10 - Removing a nesting limit that we missed
+0.2.11 - We weren't properly handling an empty payload response

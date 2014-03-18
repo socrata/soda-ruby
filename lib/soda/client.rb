@@ -81,7 +81,9 @@ module SODA
         if response.code != "200"
           raise "Error in request: #{response.body}"
         else
-          if response["Content-Type"].include?("application/json")
+          if response.body.nil? || response.body.empty?
+            return nil
+          elsif response["Content-Type"].include?("application/json")
             # Return a bunch of mashes if we're JSON
             response = JSON::parse(response.body, :max_nesting => false)
             if response.is_a? Array
