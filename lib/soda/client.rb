@@ -25,6 +25,7 @@ module SODA
     # * +:username+ - Your Socrata username (optional, only necessary for modifying data)
     # * +:password+ - Your Socrata password (optional, only necessary for modifying data)
     # * +:app_token+ - Your Socrata application token (register at http://dev.socrata.com/register)
+    # * +:ignore_ssl+ - Ignore ssl errors (defaults to false)
     #
     # Returns a SODA::Client instance.
     #
@@ -119,11 +120,7 @@ module SODA
 
       # Create our request
       uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      if @config[:ignore_ssl]
-        http.auth.ssl.verify_mode = openssl::ssl::verify_none
-      end
+      http = build_http_client(uri.host, uri.port)
 
       request = Net::HTTP::Post.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
@@ -191,8 +188,7 @@ module SODA
 
         uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+        http = build_http_client(uri.host, uri.port)
         request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
         request.add_field("X-App-Token", @config[:app_token])
 
@@ -219,6 +215,15 @@ module SODA
         else
           return handle_response(http.request(request))
         end
+      end
+
+      def build_http_client(host, port)
+        http = Net::HTTP.new(host, port)
+        http.use_ssl = true
+        if @config[:ignore_ssl]
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+        http
       end
 
   end
