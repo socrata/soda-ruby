@@ -1,2 +1,4 @@
-public
-.bundle/*
+.sass-cache/*
+public/
+tmp/*
+.DS_Store
