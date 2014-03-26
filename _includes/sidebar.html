@@ -1,4 +1,6 @@
-<li><a href="{{ site.root }}/examples/consumer">Consuming data</a></li>
-<li><a href="{{ site.root }}/examples/upsert">Updating a dataset with upsert</a></li>
-<li><a href="{{ site.root }}/examples/metadata">Retrieving and updating metadata</a></li>
-
+<li class="nav-header dropdown-header">Examples</li>
+{% for page in site.pages %}
+  {% if page.type == 'example' %}
+    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+  {% endif %}
+{% endfor %}
