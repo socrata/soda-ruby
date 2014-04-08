@@ -31,7 +31,7 @@ client = SODA::Client.new({:domain => "soda.demo.socrata.com",
 
 We're going to use the `POST` method to update our dataset, using the [upsert functionality](http://dev.socrata.com/publishers/upsert.html) documented on the [Socrata Developer Portal](http://dev.socrata.com). If you've never used upsert before, make sure you have your primary key set properly to make sure you update records properly.
 
-For this example, we're going to create one record and update a second, but the record set could easily be thousands of records. The soda-ruby `post` method accepts an array of hashes to represent the records youw ant to update in your dataset. For this example, `earthquake_id` is the identifier for this dataset, and it is a [`String`](http://dev.socrata.com/docs/datatypes/string.html) value:
+For this example, we're going to create one record and update a second, but the record set could easily be thousands of records. The soda-ruby `post` method accepts an array of hashes to represent the records you want to update in your dataset. For this example, `earthquake_id` is the identifier for this dataset, and it is a [`String`](http://dev.socrata.com/docs/datatypes/string.html) value:
 
 {% highlight ruby %}
 update = [ {
