@@ -14,7 +14,7 @@ The ability to write to a Socrata dataset requires you to own that dataset or be
 
 ## Create Your Client and Authenticate
 
-The soda-ruby Gem supports [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) over HTTPs, one of the two different [authentication methods](http://dev.socrata.com.dev/docs/authentication.html) supported by the Socrata APIs. You'll also need to register for an [application token](http://dev.socrata.com.dev/docs/app-tokens.html).
+The soda-ruby Gem supports [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) over HTTPs, one of the two different [authentication methods](http://dev.socrata.com/docs/authentication.html) supported by the Socrata APIs. You'll also need to register for an [application token](http://dev.socrata.com/docs/app-tokens.html).
 
 Once you have your account information and your application token, you can create your client. For this example, we'll be updating the [USGS Earthquake Reports](https://soda.demo.socrata.com/dataset/USGS-Earthquake-Reports/4tka-6guv) dataset on our API demo domain, `soda.demo.socrata.com`. It has an identifier of `4tka-6guv`:
 
