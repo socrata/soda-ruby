@@ -1,6 +1,6 @@
 <li class="nav-header dropdown-header">Examples</li>
 {% for page in site.pages %}
   {% if page.type == 'example' %}
-    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    <li><a href="{{ site.root }}{{ page.url }}">{{ page.title }}</a></li>
   {% endif %}
 {% endfor %}
