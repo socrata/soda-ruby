@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
 gem 'github-pages'
-gem 'sass'
-gem 'ferret'
 
-gem 'pry'
+gem 'ferret'
+gem 'rb-gsl'
