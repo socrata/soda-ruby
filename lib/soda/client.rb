@@ -159,7 +159,7 @@ module SODA
 
       def handle_response(response)
         # Check our response code
-        if response.code != "200"
+        if !["200", "202"].include? response.code
           raise "Error in request: #{response.body}"
         else
           if response.body.nil? || response.body.empty?
@@ -222,6 +222,9 @@ module SODA
         http.use_ssl = true
         if @config[:ignore_ssl]
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+        if @config[:timeout]
+          http.read_timeout = @config[:timeout]
         end
         http
       end

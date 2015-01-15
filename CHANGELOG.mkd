@@ -8,3 +8,4 @@
 0.2.10 - Removing a nesting limit that we missed
 0.2.11 - We weren't properly handling an empty payload response
 0.2.12 - Added a global option to disable SSL checking from https://github.com/socrata/soda-ruby/pull/7
+0.2.13 - Added a global :timeout option to override the default Net:HTTP timeout, and accepting 202 as an "OK" response code, which should only occur during import.
