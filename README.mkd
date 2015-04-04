@@ -25,3 +25,16 @@ response = client.get("644b-gaut", {"$limit" => 1, :namelast => "WINFREY", :name
 
  => [#<Hashie::Mash appt_end_date="12/3/09 23:59" appt_made_date="12/2/09 18:05" appt_start_date="12/3/09 9:30" caller_name_first="SALLY" caller_name_last="ARMBRUSTER" last_updatedby="J7" lastentrydate="12/2/09 18:05" meeting_loc="WH" meeting_room="DIP ROOM" namefirst="OPRAH" namelast="WINFREY" post="WIN" release_date=1269586800 terminal_suffix="J7" total_people="10" type_of_access="VA" uin="U60816" visitee_namefirst="SEMONTI" visitee_namelast="STEPHENS">]
 ```
+
+You can use other simple query SoQL methods found here: <http://dev.socrata.com/docs/queries.html>
+
+```ruby
+client = SODA::Client.new({:domain => "soda.demo.socrata.com"})
+response = client.get("4tka-6guv", {"$where" => "magnitude > '3.0'"})
+
+=> [#<Hashie::Mash datetime="2012-09-14T09:28:55" depth="20" earthquake_id="12258012" location=#<Hashie::Mash latitude="19.7859" longitude="-64.0849" needs_recoding=false> magnitude="3.1" number_of_stations="6" region="north of the Virgin Islands" source="pr" version="0">, #<Hashie::Mash datetime="2012-09-14T07:58:39" depth="74" earthquake_id="12258011" location=#<Hashie::Mash latitude="19.5907" longitude="-64.1723" needs_recoding=false> magnitude="3.3" number_of_stations="4" region="Virgin Islands region" source="pr" version="0">, ... ]
+
+response = client.get("4tka-6guv", {"$where" => "datetime > '2012-09-14T09:28:55' AND datetime < '2012-12-25T09:00:00'"})
+
+=> [#<Hashie::Mash datetime="2012-09-14T10:10:19" depth="8.2" earthquake_id="00388609" location=#<Hashie::Mash latitude="36.9447" longitude="-117.6778" needs_recoding=false> magnitude="1.7" number_of_stations="29" region="Northern California" source="nn" version="9">, #<Hashie::Mash datetime="2012-09-14T10:06:11" depth="6.4" earthquake_id="00388607" location=#<Hashie::Mash latitude="36.9417" longitude="-117.6903" needs_recoding=false> magnitude="1.7" number_of_stations="29" region="Central California" source="nn" version="9">, ... ]
+```
