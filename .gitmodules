@@ -1,9 +1,9 @@
 [submodule "common"]
 	path = common
-	url = git://github.com/socrata/labs-common.git
+	url = https://github.com/socrata/labs-common.git
 [submodule "_layouts"]
 	path = _layouts
-	url = git://github.com/socrata/labs-common-jekyll.git
+	url = https://github.com/socrata/labs-common-jekyll.git
 [submodule "_plugins"]
 	path = _plugins
 	url = https://github.com/socrata/labs-plugins.git
