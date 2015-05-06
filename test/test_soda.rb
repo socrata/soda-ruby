@@ -206,6 +206,14 @@ class SODATest < Test::Unit::TestCase
         response = @client.post("earthquakes", [ { :source => "uw", :magnitude => 5, :earthquake_id => 42 } ])
         assert_equal response["Rows Created"], 1
       end
+
+      should "be able to POST a form" do
+        stub_request(:post, "https://fakeuser%40socrata.com:fakepassword@fakehost.socrata.com/resource/earthquakes.json?")
+          .to_return(resource("earthquakes_create_one_row.response"))
+
+        response = @client.post_form("earthquakes", { :source => "uw", :magnitude => 5, :earthquake_id => 42 } )
+        assert_equal response["Rows Created"], 1
+      end
     end
   end
 

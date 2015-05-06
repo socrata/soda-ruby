@@ -114,17 +114,14 @@ module SODA
       connection(:delete, resource, body, params)
     end
 
-    def post_form(path, fields = {}, params = {})
+    def post_form(resource, body = {}, params = {})
       query = query_string(params)
-      resource = resoure_path(path)
-
-      # Create our request
-      uri = URI.parse("https://#{@config[:domain]}#{resource}.json?#{query}")
-      http = build_http_client(uri.host, uri.port)
+      path = resource_path(resource)
+      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
       request = Net::HTTP::Post.new(uri.request_uri)
       request.add_field("X-App-Token", @config[:app_token])
-      request.set_form_data(fields)
+      request.set_form_data(body)
 
       # Authenticate if we're supposed to
       if @config[:username]
@@ -132,6 +129,7 @@ module SODA
       end
 
       # BAM!
+      http = build_http_client(uri.host, uri.port)
       return handle_response(http.request(request))
     end
 
@@ -183,12 +181,9 @@ module SODA
         method = method.to_sym.capitalize
 
         query = query_string(params)
-
         path = resource_path(resource)
-
         uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
-        http = build_http_client(uri.host, uri.port)
         request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
         request.add_field("X-App-Token", @config[:app_token])
 
@@ -198,11 +193,11 @@ module SODA
         end
 
         # Authenticate if we're supposed to
-
         if @config[:username]
           request.basic_auth @config[:username], @config[:password]
         end
 
+        http = build_http_client(uri.host, uri.port)
         if method === :Delete
           response = http.request(request)
           # Check our response code
