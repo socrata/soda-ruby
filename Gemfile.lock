@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    soda-ruby (0.2.13)
+      hashie
+      multipart-post
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,9 +44,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hashie
-  multipart-post
+  bundler (~> 1.7)
+  minitest
   rake
   shoulda
+  soda-ruby!
   test-unit
   webmock

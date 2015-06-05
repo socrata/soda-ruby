@@ -1,1 +1,1 @@
-require "soda/client"
+require 'soda/client'
