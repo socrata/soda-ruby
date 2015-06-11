@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'test-unit'
+  s.add_development_dependency 'rubocop'
 end

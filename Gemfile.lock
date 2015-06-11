@@ -15,6 +15,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    ast (2.0.0)
+    astrolabe (1.3.0)
+      parser (>= 2.2.0.pre.3, < 3.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     hashie (3.4.2)
@@ -22,8 +25,19 @@ GEM
     json (1.8.3)
     minitest (5.7.0)
     multipart-post (2.0.0)
+    parser (2.2.2.5)
+      ast (>= 1.1, < 3.0)
     power_assert (0.2.3)
+    powerpack (0.1.1)
+    rainbow (2.0.0)
     rake (10.4.2)
+    rubocop (0.32.0)
+      astrolabe (~> 1.3)
+      parser (>= 2.2.2.5, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.4)
+    ruby-progressbar (1.7.5)
     safe_yaml (1.0.4)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -47,6 +61,7 @@ DEPENDENCIES
   bundler (~> 1.7)
   minitest
   rake
+  rubocop
   shoulda
   soda-ruby!
   test-unit

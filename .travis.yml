@@ -5,7 +5,7 @@ rvm:
   - '2.2'
   - ruby-head
 script:
-  - bundle exec rake test
+  - bundle exec rake test rubocop
 matrix:
  allow_failures:
    - rvm: ruby-head
