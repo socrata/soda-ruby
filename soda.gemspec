@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
 
   # we depend on:
   s.add_dependency 'hashie'
+  s.add_development_dependency 'test-unit'
 end
