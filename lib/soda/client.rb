@@ -34,7 +34,7 @@ module SODA
     #   client = SODA::Client.new({ :domain => "data.agency.gov", :app_token => "CGxarwoQlgQSev4zyUh5aR5J3" })
     #
     def initialize(config = {})
-      @config = config.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      @config = config.inject({}) { |memo, (k, v)| memo[k.to_sym] = v; memo }
     end
 
     ##
@@ -120,7 +120,7 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
       request = Net::HTTP::Post.new(uri.request_uri)
-      request.add_field("X-App-Token", @config[:app_token])
+      request.add_field('X-App-Token', @config[:app_token])
       request.set_form_data(body)
 
       # Authenticate if we're supposed to
@@ -130,99 +130,93 @@ module SODA
 
       # BAM!
       http = build_http_client(uri.host, uri.port)
-      return handle_response(http.request(request))
+      handle_response(http.request(request))
     end
 
     private
-      def query_string(params)
-        # Create query string of escaped key, value pairs
-        return params.collect{ |key, val| "#{key}=#{CGI::escape(val.to_s)}" }.join("&")
+
+    def query_string(params)
+      # Create query string of escaped key, value pairs
+      params.map { |key, val| "#{key}=#{CGI.escape(val.to_s)}" }.join('&')
+    end
+
+    def resource_path(resource)
+      # If we didn't get a full path, assume "/resource/"
+      resource = '/resource/' + resource unless resource.start_with?('/')
+
+      # Check to see if we were given an output type
+      extension = '.json'
+      if matches = resource.match(/^(.+)(\.\w+)$/)
+        resource = matches.captures[0]
+        extension = matches.captures[1]
       end
 
-      def resource_path(resource)
-        # If we didn't get a full path, assume "/resource/"
-        if !resource.start_with?("/")
-          resource = "/resource/" + resource
-        end
+      resource + extension
+    end
 
-        # Check to see if we were given an output type
-        extension = ".json"
-        if matches = resource.match(/^(.+)(\.\w+)$/)
-          resource = matches.captures[0]
-          extension = matches.captures[1]
+    def handle_response(response)
+      # Check our response code
+      if !%w(200 202).include? response.code
+        fail "Error in request: #{response.body}"
+      else
+        if response.body.nil? || response.body.empty?
+          return nil
+        elsif response['Content-Type'].include?('application/json')
+          # Return a bunch of mashes if we're JSON
+          response = JSON.parse(response.body, :max_nesting => false)
+          if response.is_a? Array
+            return response.map { |r| Hashie::Mash.new(r) }
+          else
+            return Hashie::Mash.new(response)
+          end
+        else
+          # We don't partically care, just return the raw body
+          return response.body
         end
+      end
+    end
 
-        return resource + extension
+    def connection(method = 'Get', resource = nil, body = nil, params = {})
+      method = method.to_sym.capitalize
+
+      query = query_string(params)
+      path = resource_path(resource)
+      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
+
+      request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
+      request.add_field('X-App-Token', @config[:app_token])
+
+      if method === :Post || :Put || :Delete
+        request.content_type = 'application/json'
+        request.body = body.to_json(:max_nesting => false)
       end
 
-      def handle_response(response)
+      # Authenticate if we're supposed to
+      if @config[:username]
+        request.basic_auth @config[:username], @config[:password]
+      end
+
+      http = build_http_client(uri.host, uri.port)
+      if method === :Delete
+        response = http.request(request)
         # Check our response code
-        if !["200", "202"].include? response.code
-          raise "Error in request: #{response.body}"
+        if response.code != '200'
+          fail "Error querying \"#{uri}\": #{response.body}"
         else
-          if response.body.nil? || response.body.empty?
-            return nil
-          elsif response["Content-Type"].include?("application/json")
-            # Return a bunch of mashes if we're JSON
-            response = JSON::parse(response.body, :max_nesting => false)
-            if response.is_a? Array
-              return response.collect { |r| Hashie::Mash.new(r) }
-            else
-              return Hashie::Mash.new(response)
-            end
-          else
-            # We don't partically care, just return the raw body
-            return response.body
-          end
+          # Return a bunch of mashes
+          return response
         end
+      else
+        return handle_response(http.request(request))
       end
+    end
 
-      def connection(method = "Get", resource = nil, body = nil, params = {})
-        method = method.to_sym.capitalize
-
-        query = query_string(params)
-        path = resource_path(resource)
-        uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
-
-        request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
-        request.add_field("X-App-Token", @config[:app_token])
-
-        if method === :Post || :Put || :Delete
-          request.content_type = "application/json"
-          request.body = body.to_json(:max_nesting => false)
-        end
-
-        # Authenticate if we're supposed to
-        if @config[:username]
-          request.basic_auth @config[:username], @config[:password]
-        end
-
-        http = build_http_client(uri.host, uri.port)
-        if method === :Delete
-          response = http.request(request)
-          # Check our response code
-          if response.code != "200"
-            raise "Error querying \"#{uri.to_s}\": #{response.body}"
-          else
-            # Return a bunch of mashes
-            return response
-          end
-        else
-          return handle_response(http.request(request))
-        end
-      end
-
-      def build_http_client(host, port)
-        http = Net::HTTP.new(host, port)
-        http.use_ssl = true
-        if @config[:ignore_ssl]
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        end
-        if @config[:timeout]
-          http.read_timeout = @config[:timeout]
-        end
-        http
-      end
-
+    def build_http_client(host, port)
+      http = Net::HTTP.new(host, port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE if @config[:ignore_ssl]
+      http.read_timeout = @config[:timeout] if @config[:timeout]
+      http
+    end
   end
 end
