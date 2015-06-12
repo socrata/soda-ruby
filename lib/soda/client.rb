@@ -189,15 +189,9 @@ module SODA
     def connection(method = 'Get', resource = nil, body = nil, params = {})
       method = method.to_sym.capitalize
 
-<<<<<<< HEAD
       query = query_string(params)
       path = resource_path(resource)
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
-=======
-        request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
-        request.add_field("X-App-Token", @config[:app_token])
-        request.add_field('User-Agent', 
->>>>>>> 5af9dd4... Start adding custom user agent
 
       request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
       add_default_headers_to_request(request)
