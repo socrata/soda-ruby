@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   # we depend on:
   s.add_dependency 'hashie'
   s.add_dependency 'multipart-post'
+  s.add_dependency 'sys-uname'
   s.add_development_dependency 'bundler', '~> 1.7'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'shoulda'
@@ -30,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'mocha'
 end
