@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    soda-ruby (0.2.13)
+    soda-ruby (0.2.14)
       hashie
       multipart-post
 
