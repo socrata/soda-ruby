@@ -10,9 +10,18 @@ require 'uri'
 require 'json'
 require 'cgi'
 require 'hashie'
+require 'sys/uname'
+require 'soda/version'
+include Sys
 
 module SODA
   class Client
+    class << self
+      def generate_user_agent()
+        "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
+      end
+    end
+
     ##
     #
     # Creates a new SODA client.
@@ -35,6 +44,7 @@ module SODA
     #
     def initialize(config = {})
       @config = config.inject({}) { |memo, (k, v)| memo[k.to_sym] = v; memo }
+      @user_agent = SODA::Client.generate_user_agent
     end
 
     ##
@@ -120,7 +130,7 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
       request = Net::HTTP::Post.new(uri.request_uri)
-      request.add_field('X-App-Token', @config[:app_token])
+      add_default_headers_to_request(request)
       request.set_form_data(body)
 
       # Authenticate if we're supposed to
@@ -184,7 +194,7 @@ module SODA
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
       request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
-      request.add_field('X-App-Token', @config[:app_token])
+      add_default_headers_to_request(request)
 
       if method === :Post || :Put || :Delete
         request.content_type = 'application/json'
@@ -217,6 +227,12 @@ module SODA
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE if @config[:ignore_ssl]
       http.read_timeout = @config[:timeout] if @config[:timeout]
       http
+    end
+
+    def add_default_headers_to_request(request)
+      request.delete('User-Agent')
+      request.add_field('X-App-Token', @config[:app_token])
+      request.add_field('User-Agent', @user_agent)
     end
   end
 end
