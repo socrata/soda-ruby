@@ -74,6 +74,3 @@ DEPENDENCIES
   soda-ruby!
   test-unit
   webmock
-
-BUNDLED WITH
-   1.10.5

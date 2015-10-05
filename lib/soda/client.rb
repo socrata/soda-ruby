@@ -193,7 +193,7 @@ module SODA
       path = resource_path(resource)
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
-      request = net_http_class(method).new(uri.request_uri)
+      request = eval("Net::HTTP::#{method}").new(uri.request_uri)
       add_default_headers_to_request(request)
 
       # Authenticate if we're supposed to
@@ -225,13 +225,6 @@ module SODA
       end
 
       build_http_client(uri.host, uri.port)
-    end
-
-    def http_request
-      @http_request ||= net_http_class(method).new(uri.request_uri).tap do |request|
-        set_headers! request
-        set_body! request
-      end
     end
 
     def build_http_client(host, port)
