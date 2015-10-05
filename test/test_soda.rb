@@ -124,16 +124,16 @@ class SODATest < Test::Unit::TestCase
   # Test responses from a real fake dataset
   context 'earthquakes' do
     setup do
-      SODA::Client.stubs(:generate_user_agent).returns("The Best User Agent of All Time")
+      SODA::Client.stubs(:generate_user_agent).returns('The Best User Agent of All Time')
       @client = SODA::Client.new(:domain => DOMAIN, :app_token => 'K6rLY8NBK0Hgm8QQybFmwIUQw')
     end
 
     should 'be able to access the earthquakes dataset' do
       stub_request(:get, 'https://fakehost.socrata.com/resource/earthquakes.json?')
-        .with(:body => "null",
-              :headers => {'Accept'=>'*/*', 'Content-Type'=>'application/json', 
-                           'User-Agent'=>'The Best User Agent of All Time', 
-                           'X-App-Token'=>'K6rLY8NBK0Hgm8QQybFmwIUQw'})
+        .with(:body => 'null',
+              :headers => { 'Accept' => '*/*', 'Content-Type' => 'application/json',
+                            'User-Agent' => 'The Best User Agent of All Time',
+                            'X-App-Token' => 'K6rLY8NBK0Hgm8QQybFmwIUQw' })
         .to_return(resource('earthquakes_50.response'))
 
       response = @client.get('earthquakes')
@@ -182,7 +182,7 @@ class SODATest < Test::Unit::TestCase
 
   context 'authenticated' do
     setup do
-      SODA::Client.stubs(:generate_user_agent).returns("The Best User Agent of All Time")
+      SODA::Client.stubs(:generate_user_agent).returns('The Best User Agent of All Time')
       @client = SODA::Client.new(:domain => DOMAIN, :app_token => APP_TOKEN,
                                  :username => USER, :password => PASSWORD)
     end
@@ -208,10 +208,10 @@ class SODATest < Test::Unit::TestCase
 
       should 'be able to POST a form' do
         stub_request(:post, 'https://fakeuser%40socrata.com:fakepassword@fakehost.socrata.com/resource/earthquakes.json?')
-          .with(:body => {"earthquake_id"=>"42", "magnitude"=>"5", "source"=>"uw"},
-               :headers => {'Accept'=>'*/*', 'Content-Type'=>'application/x-www-form-urlencoded',
-                            'User-Agent'=>'The Best User Agent of All Time',
-                            'X-App-Token'=>'totallyfakenotrealapptoken'})
+          .with(:body => { 'earthquake_id' => '42', 'magnitude' => '5', 'source' => 'uw' },
+                :headers => { 'Accept' => '*/*', 'Content-Type' => 'application/x-www-form-urlencoded',
+                              'User-Agent' => 'The Best User Agent of All Time',
+                              'X-App-Token' => 'totallyfakenotrealapptoken' })
           .to_return(resource('earthquakes_create_one_row.response'))
 
         response = @client.post_form('earthquakes', :source => 'uw', :magnitude => 5, :earthquake_id => 42)

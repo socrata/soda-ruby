@@ -17,7 +17,7 @@ include Sys
 module SODA
   class Client
     class << self
-      def generate_user_agent()
+      def generate_user_agent
         "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
       end
     end
@@ -43,7 +43,7 @@ module SODA
     #   client = SODA::Client.new({ :domain => "data.agency.gov", :app_token => "CGxarwoQlgQSev4zyUh5aR5J3" })
     #
     def initialize(config = {})
-      @config = config.inject({}) { |memo, (k, v)| memo[k.to_sym] = v; memo }
+      @config = Hashie.symbolize_keys! config
       @user_agent = SODA::Client.generate_user_agent
     end
 
@@ -134,9 +134,7 @@ module SODA
       request.set_form_data(body)
 
       # Authenticate if we're supposed to
-      if @config[:username]
-        request.basic_auth @config[:username], @config[:password]
-      end
+      authenticate(request)
 
       # BAM!
       http = build_http_client(uri.host, uri.port)
@@ -166,24 +164,26 @@ module SODA
 
     def handle_response(response)
       # Check our response code
-      if !%w(200 202).include? response.code
-        fail "Error in request: #{response.body}"
-      else
-        if response.body.nil? || response.body.empty?
-          return nil
-        elsif response['Content-Type'].include?('application/json')
-          # Return a bunch of mashes if we're JSON
-          response = JSON.parse(response.body, :max_nesting => false)
-          if response.is_a? Array
-            return response.map { |r| Hashie::Mash.new(r) }
-          else
-            return Hashie::Mash.new(response)
-          end
+      check_response_fail(response)
+      if response.body.nil? || response.body.empty?
+        return nil
+      elsif response['Content-Type'].include?('application/json')
+        # Return a bunch of mashes if we're JSON
+        response = JSON.parse(response.body, :max_nesting => false)
+        if response.is_a? Array
+          return response.map { |r| Hashie::Mash.new(r) }
         else
-          # We don't partically care, just return the raw body
-          return response.body
+          return Hashie::Mash.new(response)
         end
+      else
+        # We don't partically care, just return the raw body
+        return response.body
       end
+    end
+
+    def check_response_fail(response)
+      return if %w(200 202).include? response.code
+      fail "Error in request: #{response.body}"
     end
 
     def connection(method = 'Get', resource = nil, body = nil, params = {})
@@ -193,31 +193,44 @@ module SODA
       path = resource_path(resource)
       uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
 
-      request = eval("Net::HTTP::#{method.capitalize}").new(uri.request_uri)
+      request = net_http_class(method).new(uri.request_uri)
       add_default_headers_to_request(request)
 
+      # Authenticate if we're supposed to
+      authenticate(request)
+
+      http = request_by_method(method, body, request, uri)
+      send_request(method, http, request)
+    end
+
+    def send_request(method, http, request)
+      return delete_method_response(method, http, request) if method === :Delete
+      handle_response(http.request(request))
+    end
+
+    def delete_method_response(http, request)
+      response = http.request(request)
+      return response if response.code == '200'
+      fail "Error querying \"#{uri}\": #{response.body}"
+    end
+
+    def net_http_class(method)
+      Object.const_get("Net::HTTP::#{method}")
+    end
+
+    def request_by_method(method, body, request, uri)
       if method === :Post || :Put || :Delete
         request.content_type = 'application/json'
         request.body = body.to_json(:max_nesting => false)
       end
 
-      # Authenticate if we're supposed to
-      if @config[:username]
-        request.basic_auth @config[:username], @config[:password]
-      end
+      build_http_client(uri.host, uri.port)
+    end
 
-      http = build_http_client(uri.host, uri.port)
-      if method === :Delete
-        response = http.request(request)
-        # Check our response code
-        if response.code != '200'
-          fail "Error querying \"#{uri}\": #{response.body}"
-        else
-          # Return a bunch of mashes
-          return response
-        end
-      else
-        return handle_response(http.request(request))
+    def http_request
+      @http_request ||= net_http_class(method).new(uri.request_uri).tap do |request|
+        set_headers! request
+        set_body! request
       end
     end
 
@@ -227,6 +240,12 @@ module SODA
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE if @config[:ignore_ssl]
       http.read_timeout = @config[:timeout] if @config[:timeout]
       http
+    end
+
+    def authenticate(request)
+      return unless @config[:username]
+      # Authenticate if we're supposed to
+      request.basic_auth @config[:username], @config[:password]
     end
 
     def add_default_headers_to_request(request)
