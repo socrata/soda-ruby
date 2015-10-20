@@ -54,10 +54,10 @@ GEM
       ffi (>= 1.0.0)
     test-unit (3.1.4)
       power_assert
-    thread_safe (0.3.5)
+    thread_safe (0.3.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    webmock (1.21.0)
+    webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
 
@@ -74,3 +74,6 @@ DEPENDENCIES
   soda-ruby!
   test-unit
   webmock
+
+BUNDLED WITH
+   1.10.4

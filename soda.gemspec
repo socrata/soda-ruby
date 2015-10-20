@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.homepage =
     'http://github.com/socrata/soda-ruby'
   s.summary = 'Ruby for SODA 2.0'
-  s.description = 'A simple wrapper for SODA 2.0'
+  s.description = "A simple wrapper for SODA 2.0. Includes an OmniAuth provider for OAuth 2.0"
 
   s.required_rubygems_version = '>= 1.3.6'
 
