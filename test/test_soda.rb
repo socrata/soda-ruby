@@ -1,6 +1,7 @@
 require 'test/unit'
 require 'shoulda'
 require 'soda/client'
+require 'soda/exceptions'
 require 'json'
 require 'webmock/test_unit'
 require 'mocha/test_unit'
@@ -115,8 +116,15 @@ class SODATest < Test::Unit::TestCase
       request = Net::HTTP::Get.new(uri.request_uri)
       request.add_field('X-App-Token', 'FAKEAPPTOKEN')
 
-      assert_raise RuntimeError do
+      assert_raise SODA::InternalServerError do
         @client.send(:handle_response, http.request(request))
+      end
+
+      # Confirm that our exceptions can still be caught by RuntimeError
+      begin
+        @client.send(:handle_response, http.request(request))
+      rescue Exception => e
+        assert e.class <= Exception
       end
     end
   end
@@ -229,7 +237,7 @@ class SODATest < Test::Unit::TestCase
       stub_request(:get, 'https://fakehost.socrata.com/resource/idontexist.json?')
         .to_return(resource('404.response'))
 
-      assert_raise RuntimeError do
+      assert_raise SODA::NotFound do
         @client.get('idontexist')
       end
     end

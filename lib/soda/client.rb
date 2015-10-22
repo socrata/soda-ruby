@@ -12,6 +12,7 @@ require 'cgi'
 require 'hashie'
 require 'sys/uname'
 require 'soda/version'
+require 'soda/exceptions'
 include Sys
 
 module SODA
@@ -34,6 +35,7 @@ module SODA
     # * +:username+ - Your Socrata username (optional, only necessary for modifying data)
     # * +:password+ - Your Socrata password (optional, only necessary for modifying data)
     # * +:app_token+ - Your Socrata application token (register at http://dev.socrata.com/register)
+    # * +:access_token+ - Your Socrata OAuth token (optional, https://dev.socrata.com/docs/authentication.html)
     # * +:ignore_ssl+ - Ignore ssl errors (defaults to false)
     #
     # Returns a SODA::Client instance.
@@ -183,7 +185,15 @@ module SODA
 
     def check_response_fail(response)
       return if %w(200 202).include? response.code
-      fail "Error in request: #{response.body}"
+
+      # Adapted from RestClient's exception handling
+      begin
+        klass = SODA::Exceptions::EXCEPTIONS_MAP.fetch(response.code.to_i)
+
+        raise klass.new(response, response.code)
+      rescue KeyError
+        raise RequestFailed.new(response, response.code)
+      end
     end
 
     def connection(method = 'Get', resource = nil, body = nil, params = {})
@@ -236,9 +246,12 @@ module SODA
     end
 
     def authenticate(request)
-      return unless @config[:username]
       # Authenticate if we're supposed to
-      request.basic_auth @config[:username], @config[:password]
+      if @config[:username]
+        request.basic_auth @config[:username], @config[:password]
+      elsif @config[:access_token]
+        request.add_field('Authorization', "OAuth #{@config[:access_token]}")
+      end
     end
 
     def add_default_headers_to_request(request)
