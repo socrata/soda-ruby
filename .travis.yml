@@ -1,12 +1,15 @@
 language: ruby
 sudo: false
 rvm:
-  - '1.9.3'
-  - '2.1'
-  - '2.2'
-  - ruby-head
+- 1.9.3
+- '2.1'
+- '2.2'
+- ruby-head
 script:
-  - bundle exec rake test rubocop
+- bundle exec rake test rubocop
 matrix:
- allow_failures:
-   - rvm: ruby-head
+  allow_failures:
+  - rvm: ruby-head
+notifications:
+  slack:
+    secure: bsPzMlTJZRJEvt16O8RdP/YeXA/TwbdPiGlRgNJXPn1vL4WU/uNBLBAG8JqCybLLIOz/QVahRII3ZZMG9tGX/BtiuEl+QkLxbjHBH9+V70XG7zj2jZKeUNuce5E/3v5JT1hCy9klsvkY6XiyXmWBEqh0GgjUTDiVoWm0pD7XA0c=
