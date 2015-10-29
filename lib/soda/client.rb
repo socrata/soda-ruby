@@ -19,7 +19,11 @@ module SODA
   class Client
     class << self
       def generate_user_agent
-        "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
+        if Gem.win_platform?
+          "soda-ruby/#{SODA::VERSION} (Windows; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
+        else
+          "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
+        end
       end
     end
 
