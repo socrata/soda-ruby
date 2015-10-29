@@ -1,3 +1,17 @@
+0.2.17
+------
+Modified `SODA::Client.generate_user_agent` to not use `Sys::Uname` to fetch system information. 
+
+0.2.16
+------
+- Added support for OAuth tokens for authentication
+- Improved the detail of the exceptions we throw in the case of errors
+
+0.2.15
+------
+(This version was never pushed)
+- Added an OmniAuth provider
+
 0.2.13
 ------
 Added a global :timeout option to override the default Net:HTTP timeout, and accepting 202 as an "OK" response code, which should only occur during import.
