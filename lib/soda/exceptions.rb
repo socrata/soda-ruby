@@ -1,70 +1,70 @@
 # Adapted (lifted) from RestClient: https://github.com/rest-client/rest-client/blob/master/lib/restclient/exceptions.rb
 module SODA
+  STATUSES = {
+    100 => 'Continue',
+    101 => 'Switching Protocols',
+    102 => 'Processing', # WebDAV
 
-  STATUSES = {100 => 'Continue',
-              101 => 'Switching Protocols',
-              102 => 'Processing', #WebDAV
+    200 => 'OK',
+    201 => 'Created',
+    202 => 'Accepted',
+    203 => 'Non-Authoritative Information', # http/1.1
+    204 => 'No Content',
+    205 => 'Reset Content',
+    206 => 'Partial Content',
+    207 => 'Multi-Status', # WebDAV
 
-              200 => 'OK',
-              201 => 'Created',
-              202 => 'Accepted',
-              203 => 'Non-Authoritative Information', # http/1.1
-              204 => 'No Content',
-              205 => 'Reset Content',
-              206 => 'Partial Content',
-              207 => 'Multi-Status', #WebDAV
+    300 => 'Multiple Choices',
+    301 => 'Moved Permanently',
+    302 => 'Found',
+    303 => 'See Other', # http/1.1
+    304 => 'Not Modified',
+    305 => 'Use Proxy', # http/1.1
+    306 => 'Switch Proxy', # no longer used
+    307 => 'Temporary Redirect', # http/1.1
 
-              300 => 'Multiple Choices',
-              301 => 'Moved Permanently',
-              302 => 'Found',
-              303 => 'See Other', # http/1.1
-              304 => 'Not Modified',
-              305 => 'Use Proxy', # http/1.1
-              306 => 'Switch Proxy', # no longer used
-              307 => 'Temporary Redirect', # http/1.1
+    400 => 'Bad Request',
+    401 => 'Unauthorized',
+    402 => 'Payment Required',
+    403 => 'Forbidden',
+    404 => 'Not Found',
+    405 => 'Method Not Allowed',
+    406 => 'Not Acceptable',
+    407 => 'Proxy Authentication Required',
+    408 => 'Request Timeout',
+    409 => 'Conflict',
+    410 => 'Gone',
+    411 => 'Length Required',
+    412 => 'Precondition Failed',
+    413 => 'Request Entity Too Large',
+    414 => 'Request-URI Too Long',
+    415 => 'Unsupported Media Type',
+    416 => 'Requested Range Not Satisfiable',
+    417 => 'Expectation Failed',
+    418 => 'I\'m A Teapot', # RFC2324
+    421 => 'Too Many Connections From This IP',
+    422 => 'Unprocessable Entity', # WebDAV
+    423 => 'Locked', # WebDAV
+    424 => 'Failed Dependency', # WebDAV
+    425 => 'Unordered Collection', # WebDAV
+    426 => 'Upgrade Required',
+    428 => 'Precondition Required', # RFC6585
+    429 => 'Too Many Requests', # RFC6585
+    431 => 'Request Header Fields Too Large', # RFC6585
+    449 => 'Retry With', # Microsoft
+    450 => 'Blocked By Windows Parental Controls', # Microsoft
 
-              400 => 'Bad Request',
-              401 => 'Unauthorized',
-              402 => 'Payment Required',
-              403 => 'Forbidden',
-              404 => 'Not Found',
-              405 => 'Method Not Allowed',
-              406 => 'Not Acceptable',
-              407 => 'Proxy Authentication Required',
-              408 => 'Request Timeout',
-              409 => 'Conflict',
-              410 => 'Gone',
-              411 => 'Length Required',
-              412 => 'Precondition Failed',
-              413 => 'Request Entity Too Large',
-              414 => 'Request-URI Too Long',
-              415 => 'Unsupported Media Type',
-              416 => 'Requested Range Not Satisfiable',
-              417 => 'Expectation Failed',
-              418 => 'I\'m A Teapot', #RFC2324
-              421 => 'Too Many Connections From This IP',
-              422 => 'Unprocessable Entity', #WebDAV
-              423 => 'Locked', #WebDAV
-              424 => 'Failed Dependency', #WebDAV
-              425 => 'Unordered Collection', #WebDAV
-              426 => 'Upgrade Required',
-              428 => 'Precondition Required', #RFC6585
-              429 => 'Too Many Requests', #RFC6585
-              431 => 'Request Header Fields Too Large', #RFC6585
-              449 => 'Retry With', #Microsoft
-              450 => 'Blocked By Windows Parental Controls', #Microsoft
-
-              500 => 'Internal Server Error',
-              501 => 'Not Implemented',
-              502 => 'Bad Gateway',
-              503 => 'Service Unavailable',
-              504 => 'Gateway Timeout',
-              505 => 'HTTP Version Not Supported',
-              506 => 'Variant Also Negotiates',
-              507 => 'Insufficient Storage', #WebDAV
-              509 => 'Bandwidth Limit Exceeded', #Apache
-              510 => 'Not Extended',
-              511 => 'Network Authentication Required', # RFC6585
+    500 => 'Internal Server Error',
+    501 => 'Not Implemented',
+    502 => 'Bad Gateway',
+    503 => 'Service Unavailable',
+    504 => 'Gateway Timeout',
+    505 => 'HTTP Version Not Supported',
+    506 => 'Variant Also Negotiates',
+    507 => 'Insufficient Storage', # WebDAV
+    509 => 'Bandwidth Limit Exceeded', # Apache
+    510 => 'Not Extended',
+    511 => 'Network Authentication Required', # RFC6585
   }
 
   # This is the base exception class. Rescue it if you want to
@@ -79,7 +79,7 @@ module SODA
     attr_accessor :data
     attr_writer :message
 
-    def initialize response = nil, initial_response_code = nil
+    def initialize(response = nil, initial_response_code = nil)
       @response = response
       @message = nil
       @initial_response_code = initial_response_code
@@ -121,7 +121,6 @@ module SODA
 
   # The request failed with an error code not managed by the code
   class RequestFailed < ExceptionWithResponse
-
     def default_message
       "HTTP status code #{http_code}"
     end
@@ -144,7 +143,7 @@ module SODA
   # Create HTTP status exception classes
   STATUSES.each_pair do |code, message|
     klass = Class.new(RequestFailed) do
-      send(:define_method, :default_message) {"#{http_code ? "#{http_code} " : ''}#{message}"}
+      send(:define_method, :default_message) { "#{http_code ? "#{http_code} " : ''}#{message}" }
     end
     klass_constant = const_set(message.delete(' \-\''), klass)
     Exceptions::EXCEPTIONS_MAP[code] = klass_constant
@@ -163,7 +162,7 @@ module SODA
     # NB: Previous releases of rest-client would raise RequestTimeout both for
     # HTTP 408 responses and for actual connection timeouts.
     class Timeout < SODA::RequestTimeout
-      def initialize(message=nil, original_exception=nil)
+      def initialize(message = nil, original_exception = nil)
         super(nil, nil)
         self.message = message if message
         self.original_exception = original_exception if original_exception
@@ -186,7 +185,6 @@ module SODA
       end
     end
   end
-
 
   # The server broke the connection prior to the request completing.  Usually
   # this means it crashed, or sometimes that your network connection was
