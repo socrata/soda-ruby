@@ -40,7 +40,8 @@ module SODA
     # * +:password+ - Your Socrata password (optional, only necessary for modifying data)
     # * +:app_token+ - Your Socrata application token (register at http://dev.socrata.com/register)
     # * +:access_token+ - Your Socrata OAuth token (optional, https://dev.socrata.com/docs/authentication.html)
-    # * +:ignore_ssl+ - Ignore ssl errors (defaults to false)
+    # * +:ignore_ssl+ - Ignore SSL errors, which is very unsafe and only should be done in desperate circumstances (defaults to false)
+    # * +:debug_stream+ - Set an output stream for debugging
     #
     # Returns a SODA::Client instance.
     #
@@ -246,6 +247,7 @@ module SODA
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE if @config[:ignore_ssl]
       http.read_timeout = @config[:timeout] if @config[:timeout]
+      http.set_debug_output(@config[:debug_stream]) if @config[:debug_stream]
       http
     end
 

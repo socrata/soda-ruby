@@ -1,3 +1,10 @@
+0.2.18
+------
+Added a `:debug_stream` option to the client to all you to get the full HTTP conversation for debugging. Should not be used in production.
+
+    require 'soda/client'
+    client = SODA::Client.new(:domain => "data.seattle.gov", :debug_stream => $stderr)
+
 0.2.17
 ------
 Modified `SODA::Client.generate_user_agent` to not use `Sys::Uname` to fetch system information. 
