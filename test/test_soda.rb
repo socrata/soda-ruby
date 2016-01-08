@@ -3,6 +3,7 @@ require 'shoulda'
 require 'soda/client'
 require 'soda/exceptions'
 require 'json'
+require 'sys/uname'
 require 'webmock/test_unit'
 require 'mocha/test_unit'
 
@@ -16,6 +17,11 @@ class SODATest < Test::Unit::TestCase
   # Helpers
   def resource(name)
     File.new(File.dirname(__FILE__) + '/resources/' + name)
+  end
+
+  context 'user agents' do 
+    should 'return a proper user agent string for mac osx' do
+    end
   end
 
   context 'query strings' do
@@ -41,31 +47,51 @@ class SODATest < Test::Unit::TestCase
     end
   end
 
-  context 'resource paths' do
+  context 'resource paths with domain' do
     setup do
-      @client = SODA::Client.new
+      @client = SODA::Client.new(:domain => 'fakehost.socrata.com')
     end
 
     should 'handle a simple resource' do
-      assert_equal '/resource/644b-gaut.json', @client.send(:resource_path, '644b-gaut')
+      assert_equal 'https://fakehost.socrata.com/resource/644b-gaut.json', @client.send(:parse_resource, '644b-gaut')
     end
 
     should 'handle a custom resource' do
-      assert_equal '/resource/visitor-records.json', @client.send(:resource_path, 'visitor-records')
+      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.json', @client.send(:parse_resource, 'visitor-records')
     end
 
     should 'allow you to override content type' do
-      assert_equal '/resource/visitor-records.csv', @client.send(:resource_path, 'visitor-records.csv')
+      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.csv', @client.send(:parse_resource, 'visitor-records.csv')
+    end
+
+    should 'allow you to pass in a full URL for another domain if that\'s your thing' do
+      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv', @client.send(:parse_resource, 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
     end
 
     # NOTE: Will be deprecated later
     should 'allow you access an old-style SODA1 path' do
-      assert_equal '/api/views/644b-gaut.json', @client.send(:resource_path, '/api/views/644b-gaut')
+      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut.json', @client.send(:parse_resource, '/api/views/644b-gaut')
     end
 
     # NOTE: Will be deprecated later
     should 'allow you access an old-style SODA1 path with output type' do
-      assert_equal '/api/views/644b-gaut/rows.csv', @client.send(:resource_path, '/api/views/644b-gaut/rows.csv')
+      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut/rows.csv', @client.send(:parse_resource, '/api/views/644b-gaut/rows.csv')
+    end
+  end
+
+  context 'resource paths without domain' do
+    setup do
+      @client = SODA::Client.new
+    end
+
+    should 'fail if you don\'t provide a full URI' do
+      assert_raise RuntimeError do 
+        @client.send(:parse_resource, '644b-gaut')
+      end
+    end
+
+    should 'work with a full URI' do
+      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv', @client.send(:parse_resource, 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
     end
   end
 
@@ -185,6 +211,22 @@ class SODATest < Test::Unit::TestCase
       assert_equal '17.00', quake.depth
 
       assert quake.region?
+    end
+
+    should 'allow you to issue a query as a full URL string' do
+      stub_request(:get, 'https://fakehost.socrata.com/resource/earthquakes.json?source=uw')
+        .to_return(resource('earthquakes_uw.response'))
+
+      response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=uw')
+      assert_equal 26, response.size
+    end
+
+    should 'allow you to combine a full URL with an extra bit of query string' do
+      stub_request(:get, 'https://fakehost.socrata.com/resource/earthquakes.json?$where=magnitude > 4&source=pr')
+        .to_return(resource('earthquakes_source_pr_where_gt_4.response'))
+
+      response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=pr', '$where' => 'magnitude > 4')
+      assert_equal 1, response.size
     end
   end
 

@@ -32,4 +32,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'mocha'
+  s.add_development_dependency 'pry'
 end

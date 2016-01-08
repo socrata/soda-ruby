@@ -132,9 +132,15 @@ module SODA
     end
 
     def post_form(resource, body = {}, params = {})
-      query = query_string(params)
-      path = resource_path(resource)
-      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
+      # We'll combine any params we got from our base resource with
+      # those passed in
+      base = URI.parse(parse_resource(resource))
+      query = [
+        base.query,
+        query_string(params)
+      ].reject { |s| s.nil? || s.empty? }.join "&"
+
+      uri = URI.parse("https://#{base.host}#{base.path}?#{query}")
 
       request = Net::HTTP::Post.new(uri.request_uri)
       add_default_headers_to_request(request)
@@ -155,7 +161,10 @@ module SODA
       params.map { |key, val| "#{key}=#{CGI.escape(val.to_s)}" }.join('&')
     end
 
-    def resource_path(resource)
+    def parse_resource(resource)
+      # If our resource starts with HTTPS, assume they've passed in a full URI
+      return resource if resource.start_with?("https://")
+
       # If we didn't get a full path, assume "/resource/"
       resource = '/resource/' + resource unless resource.start_with?('/')
 
@@ -166,7 +175,8 @@ module SODA
         extension = matches.captures[1]
       end
 
-      resource + extension
+      raise "No base domain specified!" unless @config[:domain]
+      return "https://#{@config[:domain]}#{resource}#{extension}"
     end
 
     def handle_response(response)
@@ -204,9 +214,15 @@ module SODA
     def connection(method = 'Get', resource = nil, body = nil, params = {})
       method = method.to_sym.capitalize
 
-      query = query_string(params)
-      path = resource_path(resource)
-      uri = URI.parse("https://#{@config[:domain]}#{path}?#{query}")
+      # We'll combine any params we got from our base resource with
+      # those passed in
+      base = URI.parse(parse_resource(resource))
+      query = [
+        base.query,
+        query_string(params)
+      ].reject { |s| s.nil? || s.empty? }.join "&"
+
+      uri = URI.parse("https://#{base.host}#{base.path}?#{query}")
 
       request = eval("Net::HTTP::#{method}").new(uri.request_uri)
       add_default_headers_to_request(request)

@@ -1,3 +1,13 @@
+0.2.19
+------
+Added the ability to pass in a full URI instead of just a path or dataset identifier when making a request. You can also combine URIs with additional parameters.
+
+Ex:
+
+    require 'soda/client'
+    client = SODA::Client.new
+    client.get("https://fakehost.socrata.com/resource/644b-gaut.json?last_name=Willis", :first_name => "Bruce")
+
 0.2.18
 ------
 Added a `:debug_stream` option to the client to all you to get the full HTTP conversation for debugging. Should not be used in production.
