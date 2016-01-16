@@ -6,9 +6,9 @@ module OmniAuth
       option :name, 'socrata'
 
       option :client_options,
-        :site                   => 'https://opendata.socrata.com',
-        :authorize_url          => 'http://opendata.socrata.com/oauth/authorize',
-        :provider_ignores_state => true
+             :site                   => 'https://opendata.socrata.com',
+             :authorize_url          => 'http://opendata.socrata.com/oauth/authorize',
+             :provider_ignores_state => true
 
       # Sets the UID from the user's info
       uid { raw_info['id'] }

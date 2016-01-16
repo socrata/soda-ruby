@@ -19,7 +19,7 @@ class SODATest < Test::Unit::TestCase
     File.new(File.dirname(__FILE__) + '/resources/' + name)
   end
 
-  context 'user agents' do 
+  context 'user agents' do
     should 'return a proper user agent string for mac osx' do
     end
   end
@@ -57,25 +57,31 @@ class SODATest < Test::Unit::TestCase
     end
 
     should 'handle a custom resource' do
-      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.json', @client.send(:parse_resource, 'visitor-records')
+      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.json',
+                   @client.send(:parse_resource, 'visitor-records')
     end
 
     should 'allow you to override content type' do
-      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.csv', @client.send(:parse_resource, 'visitor-records.csv')
+      assert_equal 'https://fakehost.socrata.com/resource/visitor-records.csv',
+                   @client.send(:parse_resource, 'visitor-records.csv')
     end
 
     should 'allow you to pass in a full URL for another domain if that\'s your thing' do
-      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv', @client.send(:parse_resource, 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
+      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv',
+                   @client.send(:parse_resource,
+                                'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
     end
 
     # NOTE: Will be deprecated later
     should 'allow you access an old-style SODA1 path' do
-      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut.json', @client.send(:parse_resource, '/api/views/644b-gaut')
+      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut.json',
+                   @client.send(:parse_resource, '/api/views/644b-gaut')
     end
 
     # NOTE: Will be deprecated later
     should 'allow you access an old-style SODA1 path with output type' do
-      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut/rows.csv', @client.send(:parse_resource, '/api/views/644b-gaut/rows.csv')
+      assert_equal 'https://fakehost.socrata.com/api/views/644b-gaut/rows.csv',
+                   @client.send(:parse_resource, '/api/views/644b-gaut/rows.csv')
     end
   end
 
@@ -85,13 +91,15 @@ class SODATest < Test::Unit::TestCase
     end
 
     should 'fail if you don\'t provide a full URI' do
-      assert_raise RuntimeError do 
+      assert_raise RuntimeError do
         @client.send(:parse_resource, '644b-gaut')
       end
     end
 
     should 'work with a full URI' do
-      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv', @client.send(:parse_resource, 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
+      assert_equal 'https://anotherfakehost.socrata.com/resource/1234-abcd.csv',
+                   @client.send(:parse_resource,
+                                'https://anotherfakehost.socrata.com/resource/1234-abcd.csv')
     end
   end
 
@@ -149,7 +157,7 @@ class SODATest < Test::Unit::TestCase
       # Confirm that our exceptions can still be caught by RuntimeError
       begin
         @client.send(:handle_response, http.request(request))
-      rescue Exception => e
+      rescue StandardError => e
         assert e.class <= Exception
       end
     end
@@ -225,7 +233,8 @@ class SODATest < Test::Unit::TestCase
       stub_request(:get, 'https://fakehost.socrata.com/resource/earthquakes.json?$where=magnitude > 4&source=pr')
         .to_return(resource('earthquakes_source_pr_where_gt_4.response'))
 
-      response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=pr', '$where' => 'magnitude > 4')
+      response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=pr',
+                             '$where' => 'magnitude > 4')
       assert_equal 1, response.size
     end
   end
