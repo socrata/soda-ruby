@@ -253,8 +253,7 @@ module SODA
     end
 
     def request_by_method(method, body, request, uri)
-      if [:Post, :Put, :Delete].include?(method)
-      # if method === :Post || method === :Put || method === :Delete
+      if [:Post, :Put, :Get].include?(method)
         request.content_type = 'application/json'
         request.body = body.to_json(:max_nesting => false)
       end
