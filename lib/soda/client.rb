@@ -20,11 +20,14 @@ module SODA
     class << self
       def generate_user_agent
         if Gem.win_platform?
-          "soda-ruby/#{SODA::VERSION} (Windows; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
-        else
-          "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
+          return "soda-ruby/#{SODA::VERSION} (Windows; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
         end
+        "soda-ruby/#{SODA::VERSION} (#{Uname.uname.sysname}/#{Uname.uname.release}; Ruby/#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL})"
       end
+    end
+
+    def blank?(object)
+      object.nil? || object.empty?
     end
 
     ##
@@ -138,7 +141,7 @@ module SODA
       query = [
         base.query,
         query_string(params)
-      ].reject { |s| s.nil? || s.empty? }.join "&"
+      ].reject { |s| blank?(s) }.join '&'
 
       uri = URI.parse("https://#{base.host}#{base.path}?#{query}")
 
@@ -163,7 +166,7 @@ module SODA
 
     def parse_resource(resource)
       # If our resource starts with HTTPS, assume they've passed in a full URI
-      return resource if resource.start_with?("https://")
+      return resource if resource.start_with?('https://')
 
       # If we didn't get a full path, assume "/resource/"
       resource = '/resource/' + resource unless resource.start_with?('/')
@@ -175,14 +178,14 @@ module SODA
         extension = matches.captures[1]
       end
 
-      raise "No base domain specified!" unless @config[:domain]
-      return "https://#{@config[:domain]}#{resource}#{extension}"
+      raise 'No base domain specified!' unless @config[:domain]
+      "https://#{@config[:domain]}#{resource}#{extension}"
     end
 
     def handle_response(response)
       # Check our response code
       check_response_fail(response)
-      if response.body.nil? || response.body.empty?
+      if blank?(response.body)
         return nil
       elsif response['Content-Type'].include?('application/json')
         # Return a bunch of mashes if we're JSON
@@ -220,7 +223,7 @@ module SODA
       query = [
         base.query,
         query_string(params)
-      ].reject { |s| s.nil? || s.empty? }.join "&"
+      ].reject { |s| blank?(s) }.join '&'
 
       uri = URI.parse("https://#{base.host}#{base.path}?#{query}")
 
@@ -250,7 +253,7 @@ module SODA
     end
 
     def request_by_method(method, body, request, uri)
-      if method === :Post || :Put || :Delete
+      if [:Post, :Put, :Get].include?(method)
         request.content_type = 'application/json'
         request.body = body.to_json(:max_nesting => false)
       end

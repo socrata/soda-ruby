@@ -87,11 +87,8 @@ module SODA
 
     def http_code
       # return integer for compatibility
-      if @response
-        @response.code.to_i
-      else
-        @initial_response_code
-      end
+      return @response.code.to_i if @response
+      @initial_response_code
     end
 
     def http_headers
