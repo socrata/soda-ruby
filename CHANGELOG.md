@@ -1,3 +1,7 @@
+0.2.20
+------
+Internal cleanup and bug fixes
+
 0.2.19
 ------
 Added the ability to pass in a full URI instead of just a path or dataset identifier when making a request. You can also combine URIs with additional parameters.
