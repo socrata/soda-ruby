@@ -1,3 +1,7 @@
+0.2.21
+------
+Re-push of 0.2.20 because I got confused about how rubygems.org handled bad versions.
+
 0.2.20
 ------
 Internal cleanup and bug fixes
