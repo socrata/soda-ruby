@@ -238,7 +238,7 @@ module SODA
     end
 
     def send_request(method, http, request)
-      return delete_method_response(method, http, request) if method === :Delete
+      return delete_method_response(http, request) if method === :Delete
       handle_response(http.request(request))
     end
 
