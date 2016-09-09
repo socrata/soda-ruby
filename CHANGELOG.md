@@ -1,3 +1,7 @@
+0.2.22
+------
+- Fix `send_request` from passing wrong number of arguments to `delete_method_response` causing `client.delete` method to error out
+
 0.2.21
 ------
 Re-push of 0.2.20 because I got confused about how rubygems.org handled bad versions.
@@ -25,7 +29,7 @@ Added a `:debug_stream` option to the client to all you to get the full HTTP con
 
 0.2.17
 ------
-Modified `SODA::Client.generate_user_agent` to not use `Sys::Uname` to fetch system information. 
+Modified `SODA::Client.generate_user_agent` to not use `Sys::Uname` to fetch system information.
 
 0.2.16
 ------
