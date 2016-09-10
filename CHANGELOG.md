@@ -1,6 +1,6 @@
 0.2.22
 ------
-- Fix `send_request` from passing wrong number of arguments to `delete_method_response` causing `client.delete` method to error out
+- Fix `send_request` from sending wrong number of arguments to `delete_method_response` causing `client.delete` method to error out
 
 0.2.21
 ------

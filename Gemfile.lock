@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    soda-ruby (0.2.21)
+    soda-ruby (0.2.22)
       hashie (~> 3.4.2)
       multipart-post (~> 2.0.0)
       sys-uname (~> 1.0.2)
@@ -22,9 +22,9 @@ GEM
     coderay (1.1.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    ffi (1.9.10)
+    ffi (1.9.14)
     hashdiff (0.2.3)
-    hashie (3.4.3)
+    hashie (3.4.4)
     i18n (0.7.0)
     json (1.8.3)
     metaclass (0.0.4)
@@ -88,4 +88,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.12.5
