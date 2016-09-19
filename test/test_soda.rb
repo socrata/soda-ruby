@@ -248,7 +248,16 @@ class SODATest < Test::Unit::TestCase
 
     context 'with user accounts' do
       should 'be able to read his own email address' do
-        stub_request(:get, 'https://fakeuser%40socrata.com:fakepassword@fakehost.socrata.com/api/users/current.json?')
+        stub_request(:get, 'https://fakehost.socrata.com/api/users/current.json')
+          .with(:body => "null",
+                :headers => {
+                  'Accept' => '*/*',
+                  'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                  'Authorization' => 'Basic ZmFrZXVzZXJAc29jcmF0YS5jb206ZmFrZXBhc3N3b3Jk',
+                  'Content-Type' => 'application/json',
+                  'User-Agent' => 'The Best User Agent of All Time',
+                  'X-App-Token' => 'totallyfakenotrealapptoken'
+                })
           .to_return(resource('fakeuser.response'))
 
         response = @client.get('/api/users/current.json')
@@ -258,17 +267,31 @@ class SODATest < Test::Unit::TestCase
 
     context 'RESTful updates' do
       should 'be able to POST a set of rows' do
-        stub_request(:post, 'https://fakeuser%40socrata.com:fakepassword@fakehost.socrata.com/resource/earthquakes.json?')
-          .to_return(resource('earthquakes_create_one_row.response'))
+        update = [{ :source => 'uw', :magnitude => 5, :earthquake_id => 42 }]
+        stub_request(:post, 'https://fakehost.socrata.com/resource/earthquakes.json?')
+          .with(
+            :body => update.to_json,
+            :headers => {
+              'Accept' => '*/*',
+              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Authorization' => 'Basic ZmFrZXVzZXJAc29jcmF0YS5jb206ZmFrZXBhc3N3b3Jk',
+              'Content-Type' => 'application/json',
+              'User-Agent' => 'The Best User Agent of All Time',
+              'X-App-Token' => 'totallyfakenotrealapptoken'
+            })
+            .to_return(resource('earthquakes_create_one_row.response'))
 
-        response = @client.post('earthquakes', [{ :source => 'uw', :magnitude => 5, :earthquake_id => 42 }])
+        response = @client.post('earthquakes', update)
         assert_equal response['Rows Created'], 1
       end
 
       should 'be able to POST a form' do
-        stub_request(:post, 'https://fakeuser%40socrata.com:fakepassword@fakehost.socrata.com/resource/earthquakes.json?')
+        stub_request(:post, 'https://fakehost.socrata.com/resource/earthquakes.json?')
           .with(:body => { 'earthquake_id' => '42', 'magnitude' => '5', 'source' => 'uw' },
-                :headers => { 'Accept' => '*/*', 'Content-Type' => 'application/x-www-form-urlencoded',
+                :headers => { 'Accept' => '*/*', 
+                              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                              'Authorization' => 'Basic ZmFrZXVzZXJAc29jcmF0YS5jb206ZmFrZXBhc3N3b3Jk',
+                              'Content-Type' => 'application/x-www-form-urlencoded',
                               'User-Agent' => 'The Best User Agent of All Time',
                               'X-App-Token' => 'totallyfakenotrealapptoken' })
           .to_return(resource('earthquakes_create_one_row.response'))
