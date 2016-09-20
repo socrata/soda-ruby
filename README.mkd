@@ -14,6 +14,10 @@ Include the gem and hashie in your Gemfile:
 gem 'soda-ruby', :require => 'soda'
 ```
 
+### Important Note!
+
+In order to access the SODA API via HTTPS, clients must now [support the Server Name Indication (SNI)](https://dev.socrata.com/changelog/2016/08/24/sni-now-required-for-https-connections.html) extension to the TLS protocol. What does this mean? It means that if you're using `soda-ruby`, you must [use Ruby 2.0.0 or above](https://en.wikipedia.org/wiki/Server_Name_Indication), as that is when `net/http` introduced support for SNI. 2.0.0 was released in 2011, so most up-to-date platforms will be on version 2.0 or greater.
+
 ## Quick Start
 
 Create a new client. Register for an application token at <http://dev.socrata.com/register>.
