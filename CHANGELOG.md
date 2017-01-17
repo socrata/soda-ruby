@@ -1,5 +1,9 @@
 0.2.22
 ------
+- [#42](https://github.com/socrata/soda-ruby/issues/42) Removing a spurious dependency on `activesupport`
+
+0.2.22
+------
 - Fix `send_request` from sending wrong number of arguments to `delete_method_response` causing `client.delete` method to error out
 
 0.2.21

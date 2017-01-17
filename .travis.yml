@@ -12,6 +12,7 @@ rvm:
 - '2.3.1'
 - ruby-head
 script:
+- bundle
 - bundle exec rake test rubocop
 matrix:
   allow_failures:
