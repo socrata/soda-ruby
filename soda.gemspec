@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   # we depend on:
-  s.add_dependency 'hashie', '~> 3.4.6'
+  s.add_dependency 'hashie', '~> 3.4', '>= 3.4.6'
   s.add_dependency 'multipart-post', '~> 2.0.0'
   s.add_dependency 'sys-uname', '~> 1.0.2'
   s.add_development_dependency 'bundler', '~> 1.7'
