@@ -1,4 +1,8 @@
-0.2.22
+0.2.24
+------
+- [#44](https://github.com/socrata/soda-ruby/pull/44) Relaxing strictness of hashie dependency
+
+0.2.23
 ------
 - [#42](https://github.com/socrata/soda-ruby/issues/42) Removing a spurious dependency on `activesupport`
 
