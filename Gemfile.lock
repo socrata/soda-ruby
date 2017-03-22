@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     soda-ruby (0.2.23)
-      hashie (~> 3.4.6)
+      hashie (~> 3.4, >= 3.4.6)
       multipart-post (~> 2.0.0)
       sys-uname (~> 1.0.2)
 
