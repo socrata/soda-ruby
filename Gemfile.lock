@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    soda-ruby (0.2.23)
+    soda-ruby (0.2.24)
       hashie (~> 3.4, >= 3.4.6)
       multipart-post (~> 2.0.0)
       sys-uname (~> 1.0.2)
@@ -20,9 +20,9 @@ GEM
     coderay (1.1.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    ffi (1.9.14)
+    ffi (1.9.18)
     hashdiff (0.3.0)
-    hashie (3.4.6)
+    hashie (3.5.6)
     i18n (0.7.0)
     json (1.8.3)
     metaclass (0.0.4)
@@ -56,7 +56,7 @@ GEM
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
-    sys-uname (1.0.2)
+    sys-uname (1.0.3)
       ffi (>= 1.0.0)
     test-unit (3.2.1)
       power_assert
@@ -85,4 +85,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.13.1
+   1.16.0
