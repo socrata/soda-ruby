@@ -20,3 +20,5 @@ test_script:
   - bundle exec rake
 
 build: off
+
+cache:
