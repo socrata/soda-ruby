@@ -13,7 +13,7 @@ environment:
 
 install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
-  - gem install bundler --no-document -v 1.10.5
+  - yes | gem install bundler --no-document -v 1.10.5
   - bundle install --retry=3
 
 test_script:
