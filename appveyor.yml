@@ -13,12 +13,9 @@ environment:
 
 install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
-  - yes | gem install bundler --no-document -v 1.10.5
   - bundle install --retry=3
 
 test_script:
   - bundle exec rake
 
 build: off
-
-cache:
