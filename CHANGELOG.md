@@ -1,3 +1,7 @@
+0.2.25
+------
+- Bumping hashie to 3.5
+
 0.2.24
 ------
 - [#44](https://github.com/socrata/soda-ruby/pull/44) Relaxing strictness of hashie dependency
