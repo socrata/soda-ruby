@@ -265,6 +265,7 @@ module SODA
       http = Net::HTTP.new(host, port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE if @config[:ignore_ssl]
+      http.open_timeout = @config[:timeout] if @config[:timeout]
       http.read_timeout = @config[:timeout] if @config[:timeout]
       http.set_debug_output(@config[:debug_stream]) if @config[:debug_stream]
       http
