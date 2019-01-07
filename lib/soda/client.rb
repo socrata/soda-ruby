@@ -189,14 +189,18 @@ module SODA
       return nil if blank?(response.body)
 
       # Return a bunch of mashes as the body if we're JSON
-      response.body = JSON.parse(response.body, max_nesting: false)
-      response.body = if response.body.is_a? Array
+      begin
+        response.body = JSON.parse(response.body, max_nesting: false)
+        response.body = if response.body.is_a? Array
                         response.body.map { |r| Hashie::Mash.new(r) }
                       else
                         Hashie::Mash.new(response.body)
                       end
-
-      response
+      rescue
+        raise "JSON parse error"
+      ensure
+        return response
+      end
     end
 
     def check_response_fail(response)
