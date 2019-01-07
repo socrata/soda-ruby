@@ -11,8 +11,8 @@ rvm:
 - '2.4.2'
 - ruby-head
 script:
-- bundle
-- bundle exec rake test rubocop
+- bundle install
+- ruby -I test ./test/test_soda.rb
 matrix:
   allow_failures:
   - rvm: ruby-head
