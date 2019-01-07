@@ -196,8 +196,8 @@ module SODA
                       else
                         Hashie::Mash.new(response.body)
                       end
-      rescue
-        raise "JSON parse error"
+      rescue => exception
+        raise "JSON parsing failed. Error details: #{exception}"
       ensure
         return response
       end
