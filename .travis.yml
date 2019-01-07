@@ -1,9 +1,9 @@
 language: ruby
 sudo: false
+before_install:
+- gem install bundler -v '< 2'
+cache: bundler
 rvm:
-- '2.2.3'
-- '2.2.4'
-- '2.2.5'
 - '2.3.0'
 - '2.3.1'
 - '2.4.0'
@@ -11,8 +11,8 @@ rvm:
 - '2.4.2'
 - ruby-head
 script:
-- bundle install
-- ruby -I test ./test/test_soda.rb
+- bundle
+- bundle exec rake test rubocop
 matrix:
   allow_failures:
   - rvm: ruby-head
