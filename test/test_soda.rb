@@ -120,8 +120,8 @@ class SODATest < Test::Unit::TestCase
       request = Net::HTTP::Get.new(uri.request_uri)
       request.add_field('X-App-Token', 'FAKEAPPTOKEN')
 
-      body = @client.send(:handle_response, http.request(request))
-      assert_equal 50, body.size
+      response = @client.send(:handle_response, http.request(request))
+      assert_equal 50, response.body.size
     end
 
     should 'handle a 200 with an empty payload' do
@@ -135,8 +135,8 @@ class SODATest < Test::Unit::TestCase
       request = Net::HTTP::Get.new(uri.request_uri)
       request.add_field('X-App-Token', 'FAKEAPPTOKEN')
 
-      body = @client.send(:handle_response, http.request(request))
-      assert_nil body
+      response = @client.send(:handle_response, http.request(request))
+      assert_nil response
     end
 
     should 'raise on a 500 error' do
@@ -179,7 +179,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_50.response'))
 
       response = @client.get('earthquakes')
-      assert_equal 50, response.size
+      assert_equal 50, response.body.size
     end
 
     should 'be able to perform a simple equality query' do
@@ -187,7 +187,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_uw.response'))
 
       response = @client.get('earthquakes', :source => 'uw')
-      assert_equal 26, response.size
+      assert_equal 26, response.body.size
     end
 
     should 'be able to perform a simple $WHERE query' do
@@ -195,7 +195,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_where_gt_5.response'))
 
       response = @client.get('earthquakes', '$where' => 'magnitude > 5')
-      assert_equal 29, response.size
+      assert_equal 29, response.body.size
     end
 
     should 'be able to combine a $WHERE query with a simple equality' do
@@ -203,7 +203,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_source_pr_where_gt_4.response'))
 
       response = @client.get('earthquakes', '$where' => 'magnitude > 4', :source => 'pr')
-      assert_equal 1, response.size
+      assert_equal 1, response.body.size
     end
 
     should 'get the results we expect' do
@@ -211,9 +211,9 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_source_pr_where_gt_4.response'))
 
       response = @client.get('earthquakes', '$where' => 'magnitude > 4', :source => 'pr')
-      assert_equal 1, response.size
+      assert_equal 1, response.body.size
 
-      quake = response.first
+      quake = response.body.first
       assert_equal 'Puerto Rico region', quake.region
       assert_equal '4.2', quake.magnitude
       assert_equal '17.00', quake.depth
@@ -226,7 +226,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes_uw.response'))
 
       response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=uw')
-      assert_equal 26, response.size
+      assert_equal 26, response.body.size
     end
 
     should 'allow you to combine a full URL with an extra bit of query string' do
@@ -235,7 +235,7 @@ class SODATest < Test::Unit::TestCase
 
       response = @client.get('https://fakehost.socrata.com/resource/earthquakes.json?source=pr',
                              '$where' => 'magnitude > 4')
-      assert_equal 1, response.size
+      assert_equal 1, response.body.size
     end
   end
 
@@ -261,7 +261,7 @@ class SODATest < Test::Unit::TestCase
           .to_return(resource('fakeuser.response'))
 
         response = @client.get('/api/users/current.json')
-        assert_equal USER, response.email
+        assert_equal USER, response.body.email
       end
     end
 
@@ -282,7 +282,7 @@ class SODATest < Test::Unit::TestCase
             .to_return(resource('earthquakes_create_one_row.response'))
 
         response = @client.post('earthquakes', update)
-        assert_equal response['Rows Created'], 1
+        assert_equal response.body['Rows Created'], 1
       end
 
       should 'be able to POST a form' do
@@ -297,7 +297,7 @@ class SODATest < Test::Unit::TestCase
           .to_return(resource('earthquakes_create_one_row.response'))
 
         response = @client.post_form('earthquakes', :source => 'uw', :magnitude => 5, :earthquake_id => 42)
-        assert_equal response['Rows Created'], 1
+        assert_equal response.body['Rows Created'], 1
       end
     end
   end
@@ -327,7 +327,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes.csv.response'))
 
       response = @client.get('earthquakes.csv')
-      assert response.is_a? String
+      assert response.body.is_a? String
     end
 
     should 'be able to retrieve CSV with a full path' do
@@ -335,7 +335,7 @@ class SODATest < Test::Unit::TestCase
         .to_return(resource('earthquakes.csv.response'))
 
       response = @client.get('/resource/earthquakes.csv')
-      assert response.is_a? String
+      assert response.body.is_a? String
     end
   end
 end

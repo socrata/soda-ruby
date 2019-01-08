@@ -182,22 +182,24 @@ module SODA
       "https://#{@config[:domain]}#{resource}#{extension}"
     end
 
+    # Returns a response with a parsed body
     def handle_response(response)
       # Check our response code
       check_response_fail(response)
-      if blank?(response.body)
-        return nil
-      elsif response['Content-Type'].include?('application/json')
-        # Return a bunch of mashes if we're JSON
-        response = JSON.parse(response.body, :max_nesting => false)
-        if response.is_a? Array
-          return response.map { |r| Hashie::Mash.new(r) }
-        else
-          return Hashie::Mash.new(response)
-        end
-      else
-        # We don't partically care, just return the raw body
-        return response.body
+      return nil if blank?(response.body)
+
+      # Return a bunch of mashes as the body if we're JSON
+      begin
+        response.body = JSON.parse(response.body, max_nesting: false)
+        response.body = if response.body.is_a? Array
+                        response.body.map { |r| Hashie::Mash.new(r) }
+                      else
+                        Hashie::Mash.new(response.body)
+                      end
+      rescue => exception
+        raise "JSON parsing failed. Error details: #{exception}"
+      ensure
+        return response
       end
     end
 
