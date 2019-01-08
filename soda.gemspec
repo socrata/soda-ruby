@@ -2,7 +2,7 @@ require File.expand_path('../lib/soda/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name = 'soda-ruby'
-  s.version = SODA::VERSION
+  s.version = '1.0.0'
   s.platform = Gem::Platform::RUBY
   s.authors = ['Chris Metcalf']
   s.email = 'chris.metcalf@socrata.com'
