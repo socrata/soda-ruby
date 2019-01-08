@@ -26,7 +26,19 @@ Create a new client. Register for an application token at <http://dev.socrata.co
 client = SODA::Client.new({:domain => "explore.data.gov", :app_token => "CGxadgoQlgQSev4zyUh5aR5J3"})
 ```
 
-Issue a filter query. `644b-gaut` is the identifier for the dataset we want to access. The return object is an array of [Hashie::Mash](https://github.com/intridea/hashie) objects:
+Issue a filter query. `644b-gaut` is the identifier for the dataset we want to access. 
+
+### As of version 1.0.0+
+
+The return object is the complete response object with a pre parsed body. The response.body object is an array of [Hashie::Mash].
+
+If you are upgrading from a version < 1.0.0 The previous object returned is now the response.body object.
+
+### Prior to version 1 (<1.0.0)
+
+The return object is an array of [Hashie::Mash] that represents the body of the response.
+
+(https://github.com/intridea/hashie) objects:
 
 ```ruby
 response = client.get("644b-gaut", {"$limit" => 1, :namelast => "WINFREY", :namefirst => "OPRAH"})
