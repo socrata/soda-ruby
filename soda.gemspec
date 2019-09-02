@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   # we depend on:
   s.add_dependency 'hashie', '~> 3.5'
-  s.add_dependency 'multipart-post', '~> 2.0.0'
+  s.add_dependency 'multipart-post', '~> 2.0'
   s.add_dependency 'sys-uname', '~> 1.0.2'
   s.add_development_dependency 'bundler', '~> 1.7'
   s.add_development_dependency 'rake'
