@@ -12,6 +12,8 @@ The ability to write to a Socrata dataset requires you to own that dataset or be
 - If you're a member of a community group working on open data, request the creation of a [Socrata Community Portal](http://communities.socrata.com).
 - Get hired by one of our wonderful customers. :)
 
+Also, be sure to decide which method of writing to a Socrata dataset you wish to use. The Socrata Open Data API (SODA) supports writing directly to the dataset, whereas the [Data Management API](https://socratapublishing.docs.apiary.io/) stages data updates in drafts and applies on-platform data transforms. See the latter's documentation for more detail.
+
 ## Create Your Client and Authenticate
 
 The soda-ruby Gem supports [HTTP Basic Authentication](http://en.wikipedia.org/wiki/Basic_access_authentication) over HTTPs, one of the two different [authentication methods](http://dev.socrata.com/docs/authentication.html) supported by the Socrata APIs. You'll also need to register for an [application token](http://dev.socrata.com/docs/app-tokens.html).
