@@ -4,7 +4,7 @@ PATH
     soda-ruby (1.0.0)
       hashie (~> 3.5)
       multipart-post (~> 2.0)
-      sys-uname (~> 1.0.2)
+      sys-uname (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
