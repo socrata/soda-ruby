@@ -42,7 +42,7 @@ GEM
       method_source (~> 0.9.0)
     public_suffix (3.0.1)
     rainbow (3.0.0)
-    rake (12.3.0)
+    rake (12.3.3)
     rubocop (0.52.1)
       parallel (~> 1.10)
       parser (>= 2.4.0.2, < 3.0)
