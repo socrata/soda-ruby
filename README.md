@@ -80,13 +80,10 @@ Raw ruby-gems publishing information can be found at [https://guides.rubygems.or
 
 1) First you must publish with a `soda-ruby` maintainer account. Please use the `tylsvc-rubygems` rubygems.org account located in lasspass. If you do not see it in lasspass, please reach out to a lasspass admin in order to get access.
 
-
 1) After finding the account, proceed to your local `soda-ruby` project directory. Update the **version** of the file project inside the `soda.gemspec` file, under `s.version = '1.0.1'`. This project uses semantic versioning, learn more here [https://semver.org/](https://semver.org/).
-
 
 1) Now build the gem by running `gem build soda.gemspec`. It should output a file with the name `soda-ruby-VERSION_NUMBER.gem`.
 
-2) Now to publish the gem run `gem publish soda-ruby-VERSION_NUMBER.gem`. Please insert the correct VERSION_NUMBER. This is where gems prompt for the `tylsvc-rubygems` user name and password.
+2) Then to publish the gem run `gem publish soda-ruby-VERSION_NUMBER.gem`. Please insert the correct VERSION_NUMBER. This is where gems prompt for the `tylsvc-rubygems` user name and password.
 
 Congrats! The gem should now be published.
-
